@@ -59,7 +59,7 @@ if (baseView.DOMElements.filesToUpload) {
   });
 }
 
-// ## When join button is clicked
+// ## Handling Click of Join Button
 if (baseView.DOMElements.btnGrpJoin) {
   baseView.DOMElements.btnGrpJoin.addEventListener('click', (e) => {
     e.preventDefault();
@@ -77,6 +77,15 @@ if (baseView.DOMElements.filesToUpload) {
       this.files.length + ` file chosen`;
   });
 }
+
+// Handling Click of Logout Button
+if (baseView.DOMElements.logoutBtn) {
+  baseView.DOMElements.logoutBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    authenticate.logout();
+  });
+}
+/* ###### */
 
 // Handling the Download button click
 // if (baseView.DOMElements.btnDownloadMaterial) {

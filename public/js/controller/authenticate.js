@@ -73,3 +73,19 @@ export const signup = async (name, email, password, st = '') => {
   }
 };
 /*  ############## */
+
+/*------ CALLED WHEN LOGOUT ROUTE HITS -----*/
+export const logout = async () => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `/api/users/logout`,
+    });
+
+    if (res) location.reload();
+    // utilities.renderAlertSecondary('Logged out successfully', false, '/');
+  } catch (err) {
+    // utilities.renderAlertSecondary(err.response.data.message);
+  }
+};
+/*  ############## */

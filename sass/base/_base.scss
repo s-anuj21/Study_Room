@@ -44,6 +44,7 @@ ul {
 
 a {
   color: inherit;
+  display: inline-block;
   text-decoration: none;
 }
 
@@ -120,8 +121,22 @@ a {
     width: min-content;
     padding: 7rem 6rem;
     // border: 2px solid grey;
-    width: 35%;
+    width: 55rem;
     background-color: $color-white;
     box-shadow: 0rem 1rem 4rem $color-grey-2;
+  }
+}
+
+// Login Page
+.login {
+  &__footer {
+    &__createAcc {
+      margin-top: 3rem;
+      transition: all 0.4s;
+      &:hover {
+        color: $color-secondary;
+        transform: scale(1.05);
+      }
+    }
   }
 }

@@ -116,9 +116,13 @@ exports.login = catchAsyncError(async (req, res, next) => {
   sendJwtToken(user, res);
 });
 
-exports.logout = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route has been not implemented yet',
+// Route when users clicks on logout in nav
+exports.logout = (req, res, next) => {
+  // Making the jwt to expire in 1 millisec
+  res.cookie('jwt', undefined, {
+    expires: new Date(Date.now() + 1),
+  });
+  res.status(200).json({
+    status: 'success',
   });
 };

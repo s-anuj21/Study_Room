@@ -41,7 +41,7 @@ const groupSchema = new mongoose.Schema({
     type: String,
   },
 
-  // This is just for short term purposes
+  // This is just for short term purposes, for joining groups
   groupJoinToken: String,
   groupJoinTokenExpires: Date,
 });

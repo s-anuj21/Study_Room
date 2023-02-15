@@ -15,6 +15,7 @@ export const DOMElements = {
   dateEnd: document.querySelector('.dateEnd'),
   filesToUpload: document.querySelector('.input--file'),
   filesDesc: document.querySelector('.inputFile__text'),
+  logoutBtn: document.querySelector('.nav__list__item__logout'),
   uploadBtn: document.querySelector('.grpDetails__footer__btn--upload'),
   passwordConfirm: document.querySelector('.password--confirm'),
   inputCommonArr: Array.from(document.querySelectorAll('.form__field__input')),
