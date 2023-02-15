@@ -1,0 +1,33 @@
+extends base
+
+block content 
+  main.main 
+    section.section.section--grpCreation
+      .section__wrapper__inner--form
+        .grpCreation
+          .grpCreation__header 
+            .heading.heading--secondary Create a group
+          form.form.form--grpCreation
+            .form__field
+              label.form__field__label Group Name
+              input.form__field__input.grpName(type="text")
+              
+            .form__field
+              label.form__field__label Group Subject
+              input.form__field__input.grpSubject(type="text")
+
+            .form__field
+              label.form__field__label From
+              input.form__field__input.dateToday(type="date" disabled)
+            
+            .form__field
+              label.form__field__label To
+              input.form__field__input.dateEnd(type="date")
+            
+            .form__field 
+              button.form__field__btn.form__field__btn--submit Create Group
+
+
+
+
+

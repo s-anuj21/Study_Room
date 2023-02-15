@@ -1,0 +1,41 @@
+.color--primary {
+  color: $color-primary;
+}
+
+.color--error {
+  color: $color-error;
+}
+
+.para {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.para--small {
+  font-size: 1.4rem;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+  width: fit-content;
+  border: none;
+  background-color: $color-offWhite;
+  box-shadow: 0 0.2rem 0.3rem $color-grey-1;
+  transition: all 0.1s ease-out;
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0.5rem 1rem $color-grey-1;
+    cursor: pointer;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+    &:hover {
+      background-color: $color-secondary;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+extends base
+
+block content 
+  main.main 
+    section.section.section--myRooms
+      .section--myRooms__wrapper__inner
+        .section__header.dashboard__header
+          .heading.heading--primary My Rooms
+          button.btn--grpJoin Join Group
+        .myRooms__list
+          each el in grps
+            //- li.myRooms__list__item
+            a.myRooms__list__item(href=`/group/${el._id}`)
+              .myRooms__list__item__header
+                h4.myRooms__list__item__header__title= el.name
+                .myRooms__list__item__header__sub= el.subject
+
+              .myRooms__list__item__material
+                h5.myRooms__list__item__material__heading Recent Uploaded Material
+                .myRooms__list__item__material--recent= el.studyMaterial[0]
+
+              .myRooms__list__item__leader= el.leader
+
+
+
+

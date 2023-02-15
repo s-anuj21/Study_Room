@@ -1,0 +1,48 @@
+extends base
+
+block content 
+  main.main 
+    section.section.section--grpDetails.grpDetails(data-grpid=`${group._id}`)
+      .grpDetails__wrapper
+        .grpDetails__header
+          .grpDetails__header__left
+            h2.grpDetails__header__heading.heading.heading--primary= group.name
+            p.grpDetails__header__subject= group.subject
+            p.grpDetails__header__validity= `${group.endDate}`
+          .grpDetails__header__right 
+            a.btn.grpDetails__header__btn--link Copy Join Link
+
+        .grpDetails__contents
+          .grpDetails__materials 
+            h3.grpDetails__materials__heading.heading.heading--tertiary Study Materials 
+            ul.grpDetails__materials__list
+              -let i = 1;
+              each el in group.studyMaterial
+                li.grpDetails__materials__list__item 
+                  span= `${i}. ${el}`
+                  a.grpDetails__materials__list__item__btnDownload(href=`/api/groups/download/${el}` data-item=`${el}`)
+                    ion-icon(name="download")
+                -i++;
+
+            .grpDetails__materials__upload
+              input.grpDetails__materials__upload__input.input--file(type = "file" name = "inputFile" id = "inputFile" multiple hidden)
+              .inputFile--Custom
+                label.inputFile--Custom__btn.btn(for = "inputFile") Choose File
+                span.inputFile__text No file Chosen 
+                // id, file-chosen is used by defualt input btn, to display files chosen
+              button.grpDetails__footer__btn--upload.btn.btn--primary Upload
+             
+          .grpDetails__members 
+            h3.grpDetails__members__heading.heading.heading--tertiary Group Members
+            ul.grpDetails__members__list
+              each user in members
+                li.grpDetails__members__list__item
+                  ion-icon(name="person-circle")
+                  span= user.name
+        
+        
+
+
+
+
+

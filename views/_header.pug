@@ -1,0 +1,16 @@
+header.header
+  nav.nav
+    a(href = "/").nav__logo
+      img.nav__logo__img(
+        src="/res/logo--white.png"
+        alt="Logo"
+      )
+
+    ul.nav__list
+      if user
+        li.nav__list__item= `Welcome, ${user.name}`
+        li.nav__list__item
+          a.nav__list__item__logout Logout 
+      else
+        li.nav__list__item Login
+

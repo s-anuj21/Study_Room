@@ -1,0 +1,37 @@
+.form {
+  margin-top: 6rem;
+
+  &__field {
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+    * {
+      display: inline-block;
+      width: 100%;
+      //   color: $color-white;
+    }
+    &__label {
+      margin-bottom: 1rem;
+      // font-weight: ;
+    }
+
+    &__input {
+      border-left: 2px solid transparent;
+      border: 0.2px solid $color-grey-4;
+      outline: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.4rem;
+      background-color: $color-offWhite;
+      font-size: inherit;
+      transition: all 0.1s;
+
+      &:focus {
+        border-left: 2px solid $color-primary;
+      }
+    }
+
+    &__btn {
+      margin-top: 3rem;
+    }
+  }
+}

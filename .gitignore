@@ -1,0 +1,5 @@
+node_modules/
+Things_To_Revise.txt
+public/dev_data
+public/studyMaterials/*
+*.env

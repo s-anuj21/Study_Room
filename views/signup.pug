@@ -1,0 +1,29 @@
+extends base
+
+block content 
+  main.main 
+    section.section.section--signup
+      .section__wrapper__inner--form
+        .signup
+          .signup__header 
+            .heading.heading--secondary Create your Account
+          form.form.form--signup
+            .form__field
+              label.form__field__label Name
+              input.form__field__input.name(type="text")
+            .form__field
+              label.form__field__label Email
+              input.form__field__input.email(type="text")
+            .form__field
+              label.form__field__label Password
+              input.form__field__input.password(type="password")
+            .form__field
+              label.form__field__label Confirm Password
+              input.form__field__input.password--confirm(type="password")
+            .form__field 
+              button.form__field__btn.form__field__btn--submit.btn.btn--primary SignUp
+
+
+
+
+

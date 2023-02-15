@@ -1,0 +1,68 @@
+.myRooms__list {
+  //   border: 2px solid red;
+  margin-top: 4rem;
+
+  &__item {
+    // border: 1px solid $color-grey-1;
+    // padding: 1rem 2rem;
+    width: 30rem;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    display: block;
+    background-color: $color-white;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 15%);
+
+    & > * {
+      padding: 0 3rem;
+    }
+
+    &__header {
+      padding-top: 3rem;
+      padding-bottom: 1rem;
+      background-color: $color-primary;
+      background-image: linear-gradient(
+        to right,
+        $color-primary,
+        $color-secondary
+      );
+      border-radius: 1rem;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      color: $color-white;
+
+      &__title {
+        margin-bottom: 3rem;
+        font-size: 2.2rem;
+      }
+    }
+
+    &__material {
+      padding-top: 3rem;
+      padding-bottom: 6rem;
+
+      &__heading {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      &--recent {
+        font-size: 1.3rem;
+      }
+    }
+
+    &__leader {
+      border-top: 1px solid $color-grey-1;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      font-size: 1.4rem;
+      //   font-weight: 500;
+      text-align: right;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.01);
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 25%);
+    }
+  }
+}

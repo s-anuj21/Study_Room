@@ -1,0 +1,127 @@
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+
+  // @include respond(tab) {
+  //   font-size: 9px;
+  // }
+
+  // @include respond(phone) {
+  //   font-size: 8.5px;
+  // }
+}
+
+*,
+*:after,
+*:before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+input,
+button,
+a {
+  color: $color-default;
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+body {
+  // border: 2px solid red;
+  background-color: $color-white;
+  padding: 3rem;
+  // background-color: $color-grey-light-1;
+}
+
+ul {
+  font-weight: 400;
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.marginAround {
+  margin: 0 8rem;
+
+  // @include respond(mini-lap) {
+  //   margin: 0 4rem;
+  // }
+
+  // @include respond(tab) {
+  //   margin: 0 2rem;
+  // }
+}
+
+//HEADING
+.heading {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2rem;
+  font-weight: 700;
+
+  // @include respond(phone) {
+  //   font-size: 3.2rem;
+  // }
+
+  &--primary {
+    font-size: 3.5rem;
+    color: $color-primary;
+  }
+
+  &--secondary {
+    color: $color-primary;
+    font-size: 3rem;
+  }
+
+  &--tertiary {
+    font-size: 2.5rem;
+    text-transform: capitalize;
+  }
+}
+
+.main {
+  background-color: $color-white;
+}
+
+// Login Section
+
+.section {
+  display: flex;
+  justify-content: center;
+  padding: 6rem 0;
+  background-color: $color-grey-3;
+
+  &--gradient {
+    background-color: $color-primary;
+    background-image: linear-gradient(
+      to right bottom,
+      $color-primary,
+      $color-secondary
+    );
+  }
+  &--myRooms {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    justify-content: flex-start;
+  }
+
+  &__header {
+    color: $color-white;
+  }
+
+  &__wrapper__inner--form {
+    width: min-content;
+    padding: 7rem 6rem;
+    // border: 2px solid grey;
+    width: 35%;
+    background-color: $color-white;
+    box-shadow: 0rem 1rem 4rem $color-grey-2;
+  }
+}
