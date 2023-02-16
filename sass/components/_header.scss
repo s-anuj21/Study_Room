@@ -1,7 +1,7 @@
 .header {
   .nav {
     padding-bottom: 1rem;
-    border-bottom: 2px solid $color-grey-1;
+    border-bottom: 2px solid $color-grey-2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,8 +9,8 @@
     padding-top: 3rem;
     padding-bottom: 2rem;
     text-transform: uppercase;
-    background-color: #2c3e50;
-    // box-shadow: 0rem 2rem 1rem #000;
+    background-color: $color-default;
+    box-shadow: 0 0.2rem 1rem $color-grey-1;
     &__logo {
       // display: inli
       &__img {
@@ -49,4 +49,7 @@
       }
     }
   }
+}
+.main {
+  box-shadow: 0 0.5rem 1rem $color-grey-1;
 }

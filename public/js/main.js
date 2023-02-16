@@ -87,6 +87,29 @@ if (baseView.DOMElements.logoutBtn) {
 }
 /* ###### */
 
+// Handling Click of Copy join Link Button
+if (baseView.DOMElements.copyJoinLinkBtn) {
+  baseView.DOMElements.copyJoinLinkBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    grpController.getGroupJoinLink(
+      baseView.DOMElements.copyJoinLinkBtn.dataset.grpid
+    );
+  });
+}
+/* ###### */
+
+// Handling Click of Ok Button of alert Modal
+if (baseView.DOMElements.modalOkBtn) {
+  baseView.DOMElements.modalOkBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document
+      .querySelector('.modalAlert')
+      .parentElement.removeChild(document.querySelector('.modalAlert'));
+  });
+}
+
+//
+
 // Handling the Download button click
 // if (baseView.DOMElements.btnDownloadMaterial) {
 //   baseView.DOMElements.btnDownloadMaterial.addEventListener('click', (e) => {

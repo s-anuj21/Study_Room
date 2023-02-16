@@ -7,11 +7,13 @@ const authController = require('../controllers/authController');
 
 router.use(authController.isloggedIn);
 
-router.get('/', authController.protect, viewController.getDashboard);
 router.get('/login', viewController.getLoginForm);
 router.get('/signup', viewController.getSignupForm);
-router.get('/group/:grpId', viewController.getGroupDetails);
 
+router.use(authController.protect);
+router.get('/', viewController.getDashboard);
+router.get('/group/:grpId', viewController.getGroupDetails);
 router.get('/createGroup', viewController.getGrpCreationForm);
+router.get('/groups/:grpId/joinGroup/:joinToken', viewController.joinGroup);
 
 module.exports = router;

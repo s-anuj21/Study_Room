@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 
 // Designing User Schema
 const groupSchema = new mongoose.Schema({
@@ -45,6 +47,14 @@ const groupSchema = new mongoose.Schema({
   groupJoinToken: String,
   groupJoinTokenExpires: Date,
 });
+
+groupSchema.methods.createJoinToken = async function () {
+  // Generating 16 character string
+  const token = crypto.randomBytes(8).toString('hex');
+  this.groupJoinToken = await bcrypt.hash(token, 8);
+  this.groupJoinTokenExpires = Date.now() + 6 * 60 * 60 * 1000;
+  return token;
+};
 
 const Group = mongoose.model('Group', groupSchema);
 

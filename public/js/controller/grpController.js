@@ -1,3 +1,5 @@
+import * as baseView from '../view/baseView.js';
+
 /*------ WHEN SIGNUP ROUTE IS HITTED -----*/
 export const createGroup = async (name, subject, endDate, st = '') => {
   name = name.trim();
@@ -78,6 +80,39 @@ export const uploadFiles = async (data) => {
     console.log(err);
   }
 };
+
+// getGroupJoinLink
+export const getGroupJoinLink = async (groupId) => {
+  try {
+    const url = `/api/groups/${groupId}/joinToken`;
+
+    let res = await fetch(url, {
+      method: 'GET',
+      // credentials: 'same-origin', // This is to send cookies
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    res = await res.json();
+
+    // Writing Link on Clipboard
+    navigator.clipboard.writeText(res.joinLink);
+    const copyLinkText = baseView.DOMElements.copyJoinLinkBtn.textContent;
+    baseView.DOMElements.copyJoinLinkBtn.textContent = 'Link Copied!';
+
+    // Ressetting text after copying
+    setTimeout(() => {
+      baseView.DOMElements.copyJoinLinkBtn.textContent = copyLinkText;
+    }, 1000);
+
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// ###################
 
 // Join Grp
 

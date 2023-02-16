@@ -65,7 +65,7 @@ const upload = multer({
 exports.uploadMaterial = upload.array('files');
 
 exports.updateGroup = catchAsyncError(async (req, res, next) => {
-  const grpId = req.params.id;
+  const grpId = req.params.grpId;
   const group = await Group.findById(grpId);
 
   if (!group) return next(new AppError(`Grp Doesn't exist`));
@@ -77,6 +77,23 @@ exports.updateGroup = catchAsyncError(async (req, res, next) => {
   await group.save();
   res.status(200).json({
     status: 'success',
+  });
+});
+
+// Creating Token ,which will be used while joining grp
+exports.getJoinLink = catchAsyncError(async (req, res) => {
+  const group = await Group.findById(req.params.grpId);
+  const joinToken = await group.createJoinToken();
+
+  console.log(req.protocol, req.hostname);
+
+  const joinUrl = `${req.protocol}://${req.hostname}:${process.env.PORT}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
+
+  console.log(joinUrl);
+
+  res.status(200).json({
+    status: 'success',
+    joinLink: joinUrl,
   });
 });
 

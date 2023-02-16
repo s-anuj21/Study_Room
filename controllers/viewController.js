@@ -12,27 +12,73 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
     });
   }
 
+  for (let i = 0; i < grps.length; i++) {
+    let currUser = await User.findById(grps[i].leader);
+    grps[i].leaderName = currUser.name;
+  }
+
   res.status(200).render('dashboard', {
     title: 'Study Room',
     grps,
   });
 });
 
-exports.getGroupDetails = catchAsyncError(async (req, res, next) => {
+exports.getGroupDetails = async (req, res, next, newUser = false) => {
+  try {
+    const group = await Group.findById(req.params.grpId);
+
+    if (!group) return next(new AppError('Invalid Group Id'));
+
+    const members = await User.find({
+      _id: { $in: group.members },
+    });
+
+    // Check if user is not present in members, than divert to dashboard
+    if (!group.members.includes(req.user._id)) {
+      return res.redirect('/');
+    }
+
+    res.status(200).render('grpDetail', {
+      title: 'Study Room',
+      group,
+      members,
+      newUser,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// Adding user to group and group to user
+exports.joinGroup = catchAsyncError(async (req, res, next) => {
+  const user = req.user;
+
   const group = await Group.findById(req.params.grpId);
 
-  if (!group) return next(new AppError('Invalid Group Id'));
+  // If user already exist then redirect to dashboard
+  if (group.members.includes(user._id)) {
+    return res.redirect('/');
+  }
 
-  const members = await User.find({
-    _id: { $in: group.members },
-  });
+  await User.updateOne(
+    { _id: user._id },
+    { $addToSet: { groups: req.params.grpId } }
+  );
 
-  res.status(200).render('grpDetail', {
-    title: 'Study Room',
-    group,
-    members,
-  });
+  await Group.updateOne(
+    { _id: req.params.grpId },
+    { $addToSet: { members: user._id } }
+  );
+
+  this.getGroupDetails(req, res, next, true);
 });
+
+exports.deleteGroup = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route has been not implemented yet',
+  });
+};
 
 exports.getGrpCreationForm = (req, res, next) => {
   res.status(200).render('grpCreation', {

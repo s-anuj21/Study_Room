@@ -2,7 +2,7 @@ extends base
 
 block content 
   main.main 
-    section.section.section--grpDetails.grpDetails(data-grpid=`${group._id}`)
+    section.section.section--grpDetails.grpDetails
       .grpDetails__wrapper
         .grpDetails__header
           .grpDetails__header__left
@@ -10,7 +10,7 @@ block content
             p.grpDetails__header__subject= group.subject
             p.grpDetails__header__validity= `${group.endDate}`
           .grpDetails__header__right 
-            a.btn.grpDetails__header__btn--link Copy Join Link
+            a(data-grpid=`${group._id}`).btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
 
         .grpDetails__contents
           .grpDetails__materials 
@@ -34,13 +34,21 @@ block content
              
           .grpDetails__members 
             h3.grpDetails__members__heading.heading.heading--tertiary Group Members
-            ul.grpDetails__members__list
+            ul.grpDetails__members__list= newUser
               each user in members
                 li.grpDetails__members__list__item
                   ion-icon(name="person-circle")
                   span= user.name
         
         
+        // Custom Alert
+        -if(newUser) 
+          .modalAlert 
+            .modalAlert__content 
+              .modalAlert__para= `Congratulations!! You are now member of `
+                span.modalAlert__para__grpName= `${group.name}.`
+              a.modalAlert__btn--ok Ok
+
 
 
 

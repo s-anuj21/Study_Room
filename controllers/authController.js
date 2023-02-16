@@ -65,7 +65,7 @@ exports.protect = catchAsyncError(async (req, res, next) => {
   }
 
   // 4. Check if user changed password after jwt sign
-  // Will do afterwards
+  // Not needed, for now, as changed password is not implemented
 
   req.user = currUser;
   next();

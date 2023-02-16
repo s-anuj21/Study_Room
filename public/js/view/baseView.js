@@ -17,6 +17,8 @@ export const DOMElements = {
   filesDesc: document.querySelector('.inputFile__text'),
   logoutBtn: document.querySelector('.nav__list__item__logout'),
   uploadBtn: document.querySelector('.grpDetails__footer__btn--upload'),
+  copyJoinLinkBtn: document.querySelector('.btn--linkCopy'),
+  modalOkBtn: document.querySelector('.modalAlert__btn--ok'),
   passwordConfirm: document.querySelector('.password--confirm'),
   inputCommonArr: Array.from(document.querySelectorAll('.form__field__input')),
 };
@@ -89,3 +91,19 @@ if (DOMElements.dateToday) {
   today = yyyy + '-' + mm + '-' + dd;
   DOMElements.dateToday.value = today;
 }
+
+// Custom ALert
+export const customAlert = (msg) => {
+  const alertMarkup = `
+      <div class = "modalAlert">
+          <div class = "modalAlert__content">
+              <div class = "modalAlert__para">
+                  ${msg}
+              </div>
+              <a class = "modalAlert__btn--ok">Ok</a>
+          </div>
+      </div>
+        `;
+
+  document.querySelector('body').insertAdjacentHTML('beforeend', alertMarkup);
+};

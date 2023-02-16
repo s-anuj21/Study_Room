@@ -6,7 +6,7 @@ block content
       .section--myRooms__wrapper__inner
         .section__header.dashboard__header
           .heading.heading--primary My Rooms
-          button.btn--grpJoin Join Group
+          //- button.btn--grpJoin Join Group
         .myRooms__list
           each el in grps
             //- li.myRooms__list__item
@@ -19,8 +19,12 @@ block content
                 h5.myRooms__list__item__material__heading Recent Uploaded Material
                 .myRooms__list__item__material--recent= el.studyMaterial[0]
 
-              .myRooms__list__item__leader= el.leader
+              .myRooms__list__item__leader= el.leaderName
+            
+          -if(!grps.length)
+            .myRooms__empty Join a group to see here!! 
 
-
+          
+          
 
 

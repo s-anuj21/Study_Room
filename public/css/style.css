@@ -141,9 +141,58 @@ a {
   background-color: #e67e22;
 }
 
+.modalAlert {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2349;
+  transition: 0.6s;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modalAlert__content {
+  display: inline-block;
+  padding: 4rem 6rem;
+  border-radius: 0.3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  opacity: 0;
+  animation: 0.4s ease-in fadeAlert forwards;
+  text-align: center;
+  background-color: #fff;
+}
+.modalAlert__btn--ok {
+  border: 1px solid #333;
+  padding: 0.6rem 3rem;
+  border-radius: 0.2rem;
+  margin-top: 3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.modalAlert__btn--ok:hover {
+  transform: scale(1.05);
+}
+.modalAlert__para__grpName {
+  color: #e67e22;
+  font-weight: 600;
+}
+
+@keyframes fadeAlert {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .header .nav {
   padding-bottom: 1rem;
-  border-bottom: 2px solid #bdc3c7;
+  border-bottom: 2px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,7 +200,8 @@ a {
   padding-top: 3rem;
   padding-bottom: 2rem;
   text-transform: uppercase;
-  background-color: #2c3e50;
+  background-color: #333;
+  box-shadow: 0 0.2rem 1rem #bdc3c7;
 }
 .header .nav__logo__img {
   height: 4rem;
@@ -181,6 +231,10 @@ a {
 }
 .header .nav__list__item:hover::after {
   width: 100%;
+}
+
+.main {
+  box-shadow: 0 0.5rem 1rem #bdc3c7;
 }
 
 .form {
@@ -259,6 +313,7 @@ a {
   padding-bottom: 2rem;
   font-size: 1.4rem;
   text-align: right;
+  font-weight: 600;
 }
 .myRooms__list__item:hover {
   cursor: pointer;

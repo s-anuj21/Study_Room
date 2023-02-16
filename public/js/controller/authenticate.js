@@ -2,7 +2,10 @@
 export const login = async (email, password, st = '') => {
   email = email.trim();
   password = password.trim();
-
+  console.log('inside login');
+  // Saving the url, to which want to redirect after login
+  console.log(window.location);
+  const prevUrl = window.location;
   const data = {
     email,
     password,
@@ -21,8 +24,7 @@ export const login = async (email, password, st = '') => {
 
     res = await res.json();
 
-    console.log(res);
-    if (res.status != 'error') window.location.assign('/');
+    if (res.status != 'error') window.location.assign(prevUrl);
   } catch (err) {
     console.log(err);
   }

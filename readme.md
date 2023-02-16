@@ -9,3 +9,5 @@
 6. Checking Responsiveness
 7. Configuring Js Bundler
 8. Checking Configurations of package json to avoid errors
+
+9. Fix the unauthorize access to group with link // Done

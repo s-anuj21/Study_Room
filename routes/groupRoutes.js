@@ -14,11 +14,12 @@ router
   .post(groupController.createGroup);
 
 router
-  .route('/:id')
+  .route('/:grpId')
   .get(groupController.getGroup)
   .post(groupController.uploadMaterial, groupController.updateGroup)
   .delete(groupController.deleteGroup);
 
 router.get('/download/:itemName', groupController.downloadItem);
+router.get('/:grpId/joinToken', groupController.getJoinLink);
 
 module.exports = router;
