@@ -85,7 +85,7 @@ const sendJwtToken = (user, res) => {
   });
 
   res.status(200).json({
-    status: 'Success',
+    status: 'success',
     token,
   });
 };

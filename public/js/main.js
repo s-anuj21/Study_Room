@@ -92,7 +92,7 @@ if (baseView.DOMElements.copyJoinLinkBtn) {
   baseView.DOMElements.copyJoinLinkBtn.addEventListener('click', (e) => {
     e.preventDefault();
     grpController.getGroupJoinLink(
-      baseView.DOMElements.copyJoinLinkBtn.dataset.grpid
+      baseView.DOMElements.grpDetails.dataset.grpid
     );
   });
 }
@@ -102,9 +102,7 @@ if (baseView.DOMElements.copyJoinLinkBtn) {
 if (baseView.DOMElements.modalOkBtn) {
   baseView.DOMElements.modalOkBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    document
-      .querySelector('.modalAlert')
-      .parentElement.removeChild(document.querySelector('.modalAlert'));
+    document.querySelector('.modalAlert').classList.remove('showAlert');
   });
 }
 

@@ -25,6 +25,7 @@ a {
 body {
   background-color: #fff;
   padding: 3rem;
+  line-height: 140%;
 }
 
 ul {
@@ -47,6 +48,7 @@ a {
   letter-spacing: 2px;
   font-size: 2rem;
   font-weight: 700;
+  line-height: normal;
 }
 .heading--primary {
   font-size: 3.5rem;
@@ -67,9 +69,17 @@ a {
 
 .section {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding: 6rem 0;
   background-color: #eee;
+}
+.section__form__svg img {
+  width: 75rem;
+}
+.section--login, .section--signup {
+  background-image: linear-gradient(to right bottom, rgba(243, 157, 18, 0.15), rgba(230, 125, 34, 0.15));
+  background-size: content;
+  background-repeat: no-repeat;
 }
 .section--gradient {
   background-color: #f39c12;
@@ -85,10 +95,9 @@ a {
 }
 .section__wrapper__inner--form {
   width: min-content;
-  padding: 7rem 6rem;
-  width: 55rem;
+  padding: 6rem;
+  width: 48rem;
   background-color: #fff;
-  box-shadow: 0rem 1rem 4rem #ddd;
 }
 
 .login__footer__createAcc {
@@ -108,22 +117,13 @@ a {
   color: #dc3545;
 }
 
-.para {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  font-weight: 400;
-}
-
-.para--small {
-  font-size: 1.4rem;
-}
-
 .btn {
   padding: 1rem 2.5rem;
   border-radius: 0.4rem;
   display: inline-block;
   width: fit-content;
   border: none;
+  color: #333;
   background-color: #f5f5f5;
   box-shadow: 0 0.2rem 0.3rem #bdc3c7;
   transition: all 0.1s ease-out;
@@ -140,9 +140,17 @@ a {
 .btn--primary:hover {
   background-color: #e67e22;
 }
+.btn--linkCopy {
+  width: 20rem;
+  text-align: center;
+}
+
+.showAlert {
+  display: block !important;
+}
 
 .modalAlert {
-  display: block;
+  display: none;
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -160,7 +168,6 @@ a {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.6rem;
   opacity: 0;
   animation: 0.4s ease-in fadeAlert forwards;
   text-align: center;
@@ -170,12 +177,14 @@ a {
   border: 1px solid #333;
   padding: 0.6rem 3rem;
   border-radius: 0.2rem;
-  margin-top: 3rem;
+  width: fit-content;
+  margin-top: 3rem !important;
   cursor: pointer;
   transition: all 0.3s;
+  margin: auto;
 }
 .modalAlert__btn--ok:hover {
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 .modalAlert__para__grpName {
   color: #e67e22;
@@ -190,6 +199,15 @@ a {
     opacity: 1;
   }
 }
+.grey-text {
+  color: #777;
+}
+
+.formInput__error {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
 .header .nav {
   padding-bottom: 1rem;
   border-bottom: 2px solid #ddd;
@@ -219,7 +237,7 @@ a {
 .header .nav__list__item:not(:last-child) {
   margin-right: 8rem;
 }
-.header .nav__list__item::after {
+.header .nav__list__item:not(.header .nav__list__item--user)::after {
   content: "";
   position: absolute;
   top: 110%;
@@ -229,7 +247,7 @@ a {
   background-color: #fff;
   transition: all 0.4s;
 }
-.header .nav__list__item:hover::after {
+.header .nav__list__item:not(.header .nav__list__item--user):hover::after {
   width: 100%;
 }
 
@@ -237,11 +255,24 @@ a {
   box-shadow: 0 0.5rem 1rem #bdc3c7;
 }
 
+.footer {
+  background-color: #333;
+  padding: 4rem;
+  color: #eee;
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+.footer__dev {
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
 .form {
   margin-top: 6rem;
 }
 .form__field:not(:last-child) {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .form__field * {
   display: inline-block;
@@ -251,8 +282,9 @@ a {
   margin-bottom: 1rem;
 }
 .form__field__input {
-  border-left: 2px solid transparent;
-  border: 0.2px solid #e2e2e2;
+  border: 0.2px solid #fdedd4;
+  border-left: 0.2rem solid #f5b043;
+  border-right: 0.2rem solid #f5b043;
   outline: none;
   padding: 0.8rem 1.5rem;
   border-radius: 0.4rem;
@@ -261,18 +293,27 @@ a {
   transition: all 0.1s;
 }
 .form__field__input:focus {
-  border-left: 2px solid #f39c12;
+  border-left: 1rem solid #f39c12;
+  border-right: 1rem solid #f39c12;
 }
 .form__field__btn {
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: fit-content;
 }
 
 .myRooms__list {
-  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 31rem);
+  row-gap: 5rem;
+  justify-content: space-between;
+  margin-top: 7rem;
+}
+.myRooms__list::after {
+  content: "";
+  flex: auto;
 }
 .myRooms__list__item {
-  width: 30rem;
+  text-align: left;
   border-radius: 1rem;
   transition: all 0.2s;
   display: block;
@@ -291,10 +332,14 @@ a {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   color: #fff;
+  clip-path: ellipse(91% 89% at 11% 11%);
 }
 .myRooms__list__item__header__title {
-  margin-bottom: 3rem;
-  font-size: 2.2rem;
+  margin-bottom: 4rem;
+  font-size: 2.7rem;
+}
+.myRooms__list__item__header__sub {
+  margin-bottom: 5rem;
 }
 .myRooms__list__item__material {
   padding-top: 3rem;
@@ -417,6 +462,15 @@ a {
 
 .inputFile--Custom__btn {
   margin-right: 2rem;
+}
+
+.dashboard {
+  width: 100%;
+}
+.dashboard__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */

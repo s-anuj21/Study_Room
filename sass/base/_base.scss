@@ -1,7 +1,6 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
-
   // @include respond(tab) {
   //   font-size: 9px;
   // }
@@ -34,6 +33,7 @@ body {
   // border: 2px solid red;
   background-color: $color-white;
   padding: 3rem;
+  line-height: 140%;
   // background-color: $color-grey-light-1;
 }
 
@@ -66,7 +66,7 @@ a {
   letter-spacing: 2px;
   font-size: 2rem;
   font-weight: 700;
-
+  line-height: normal;
   // @include respond(phone) {
   //   font-size: 3.2rem;
   // }
@@ -95,9 +95,26 @@ a {
 
 .section {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding: 6rem 0;
   background-color: $color-grey-3;
+
+  &__form__svg {
+    & img {
+      width: 75rem;
+    }
+  }
+
+  &--login,
+  &--signup {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(243, 157, 18, 0.15),
+      rgba(230, 125, 34, 0.15)
+    );
+    background-size: content;
+    background-repeat: no-repeat;
+  }
 
   &--gradient {
     background-color: $color-primary;
@@ -119,11 +136,13 @@ a {
 
   &__wrapper__inner--form {
     width: min-content;
-    padding: 7rem 6rem;
-    // border: 2px solid grey;
-    width: 55rem;
+    padding: 6rem;
+    // opacity: 0.8;
+    // border: 2px solid $color-primary-light-1;
+    width: 48rem;
+    // margin-right: 10rem;
     background-color: $color-white;
-    box-shadow: 0rem 1rem 4rem $color-grey-2;
+    // box-shadow: 0rem 1rem 4rem $color-grey-2;
   }
 }
 

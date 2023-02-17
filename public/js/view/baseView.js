@@ -8,6 +8,7 @@ export const DOMElements = {
   grpName: document.querySelector('.grpName'),
   grpSubject: document.querySelector('.grpSubject'),
   btnGrpJoin: document.querySelector('.btn--grpJoin'),
+  grpDetails: document.querySelector('.grpDetails'),
   btnDownloadMaterial: document.querySelector(
     '.grpDetails__materials__list__item__btnDownload'
   ),
@@ -27,6 +28,7 @@ export const DOMElements = {
 const formInputErrorNotice = (el = '', msg = '') => {
   // Removing the error of particular input
   if (el && el.parentElement.querySelector('.formInput__error')) {
+    console.log('dsf');
     el.parentElement
       .querySelector('.formInput__error')
       .parentElement.removeChild(
@@ -38,7 +40,7 @@ const formInputErrorNotice = (el = '', msg = '') => {
   if (msg === '') return;
 
   const markUp = `
-         <div class = 'para--small color--error formInput__error u-margin-top-extraSmall'>${msg}</div>
+         <div class = 'color--error formInput__error'>${msg}</div>
     `;
   el.insertAdjacentHTML('afterend', markUp);
 };
@@ -52,27 +54,42 @@ export const validateInputs = () => {
         'This field is mondatory'
       );
       return false;
-    }
-  }
-
-  if (DOMElements.password) {
-    if (DOMElements.password.length < 6) {
-      alert('Enter Password of min 6 character!');
-      return false;
+    } else {
+      formInputErrorNotice(DOMElements.password);
     }
   }
 
   if (DOMElements.passwordConfirm) {
-    if (DOMElements.passwordConfirm.length < 6) {
-      alert('Enter Password of min 6 character!');
+    if (DOMElements.passwordConfirm.value.length < 6) {
+      formInputErrorNotice(
+        DOMElements.passwordConfirm,
+        'Enter Password of min 6 character!'
+      );
       return false;
+    } else {
+      formInputErrorNotice(DOMElements.passwordConfirm);
     }
   }
 
   if (DOMElements.password && DOMElements.passwordConfirm) {
-    if (DOMElements.password.value != DOMElements.passwordConfirm.value) {
-      alert(`Password and Confirm Password doesn't match`);
+    if (DOMElements.password.value.length < 6) {
+      formInputErrorNotice(
+        DOMElements.password,
+        'Enter Password of min 6 character!'
+      );
       return false;
+    } else {
+      formInputErrorNotice(DOMElements.password);
+    }
+
+    if (DOMElements.password.value != DOMElements.passwordConfirm.value) {
+      formInputErrorNotice(
+        DOMElements.passwordConfirm,
+        `Password and Confirm Password doesn't match`
+      );
+      return false;
+    } else {
+      formInputErrorNotice(DOMElements.passwordConfirm);
     }
   }
 
@@ -94,16 +111,6 @@ if (DOMElements.dateToday) {
 
 // Custom ALert
 export const customAlert = (msg) => {
-  const alertMarkup = `
-      <div class = "modalAlert">
-          <div class = "modalAlert__content">
-              <div class = "modalAlert__para">
-                  ${msg}
-              </div>
-              <a class = "modalAlert__btn--ok">Ok</a>
-          </div>
-      </div>
-        `;
-
-  document.querySelector('body').insertAdjacentHTML('beforeend', alertMarkup);
+  document.querySelector('.modalAlert').classList.add('showAlert');
+  document.querySelector('.modalAlert__para').textContent = msg;
 };

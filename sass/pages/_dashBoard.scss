@@ -1,0 +1,10 @@
+.dashboard {
+  width: 100%;
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__btns {
+    }
+  }
+}

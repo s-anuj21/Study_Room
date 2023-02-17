@@ -1,9 +1,9 @@
 #TODO
 
 1. Fix logout button // Done
-2. Implement Join Group with link
-3. Place Create Group Btn Somewhere in dashbaord
-4. Design pops and alerts
+2. Implement Join Group with link // Done
+3. Place Create Group Btn Somewhere in dashbaord // Done
+4. Design pops and alerts // done
    -> Take Care of Lil stuffs(Show Leader in grpDetails)
 5. Refactor Client Js
 6. Checking Responsiveness

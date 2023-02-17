@@ -3,7 +3,7 @@
 
   &__field {
     &:not(:last-child) {
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
     * {
       display: inline-block;
@@ -16,8 +16,9 @@
     }
 
     &__input {
-      border-left: 2px solid transparent;
-      border: 0.2px solid $color-grey-4;
+      border: 0.2px solid $color-primary-light-1;
+      border-left: 0.2rem solid $color-primary-light-2;
+      border-right: 0.2rem solid $color-primary-light-2;
       outline: none;
       padding: 0.8rem 1.5rem;
       border-radius: 0.4rem;
@@ -26,12 +27,13 @@
       transition: all 0.1s;
 
       &:focus {
-        border-left: 2px solid $color-primary;
+        border-left: 1rem solid $color-primary;
+        border-right: 1rem solid $color-primary;
       }
     }
 
     &__btn {
-      margin-top: 3rem;
+      margin-top: 2rem;
       width: fit-content;
     }
   }

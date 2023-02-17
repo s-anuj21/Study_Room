@@ -6,21 +6,13 @@
   color: $color-error;
 }
 
-.para {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  font-weight: 400;
-}
-.para--small {
-  font-size: 1.4rem;
-}
-
 .btn {
   padding: 1rem 2.5rem;
   border-radius: 0.4rem;
   display: inline-block;
   width: fit-content;
   border: none;
+  color: $color-default;
   background-color: $color-offWhite;
   box-shadow: 0 0.2rem 0.3rem $color-grey-1;
   transition: all 0.1s ease-out;
@@ -38,11 +30,19 @@
       background-color: $color-secondary;
     }
   }
+
+  &--linkCopy {
+    width: 20rem;
+    text-align: center;
+  }
 }
 
 // Alert
+.showAlert {
+  display: block !important;
+}
 .modalAlert {
-  display: block;
+  display: none;
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -60,7 +60,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.6rem;
     opacity: 0;
     animation: 0.4s ease-in fadeAlert forwards;
     text-align: center;
@@ -75,11 +74,13 @@
     border: 1px solid $color-default;
     padding: 0.6rem 3rem;
     border-radius: 0.2rem;
-    margin-top: 3rem;
+    width: fit-content;
+    margin-top: 3rem !important;
     cursor: pointer;
     transition: all 0.3s;
+    margin: auto;
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
     }
 
     // @include respond(phone) {
@@ -102,4 +103,13 @@
   to {
     opacity: 1;
   }
+}
+
+.grey-text {
+  color: $light-text;
+}
+
+.formInput__error {
+  margin-top: 1rem;
+  font-size: 1.4rem;
 }

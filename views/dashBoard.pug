@@ -3,9 +3,11 @@ extends base
 block content 
   main.main 
     section.section.section--myRooms
-      .section--myRooms__wrapper__inner
+      .section--myRooms__wrapper__inner.dashboard
         .section__header.dashboard__header
           .heading.heading--primary My Rooms
+          .dashboard__header__btns 
+            a(href = "/createGroup").dashboard__header__btns__createRoom.btn Create Room
           //- button.btn--grpJoin Join Group
         .myRooms__list
           each el in grps

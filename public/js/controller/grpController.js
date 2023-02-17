@@ -25,21 +25,17 @@ export const createGroup = async (name, subject, endDate, st = '') => {
       body: JSON.stringify(data),
     });
 
-    // const res = await axios({
-    //   method: 'POST',
-    //   url: url,
-
-    //   data: {
-    //     email,
-    //     password,
-    //   },
-    // });
-
     res = await res.json();
-
     console.log(res);
+
+    if (res.status == 'success') window.location.assign('/');
+    else {
+      // Alert Failed
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+    }
   } catch (err) {
-    // utilities.renderAlertSecondary(err.response.data.message);
     console.log(err);
   }
 };
@@ -48,14 +44,17 @@ export const createGroup = async (name, subject, endDate, st = '') => {
 // upload
 
 export const uploadFiles = async (data) => {
+  if (data.files.length < 1) {
+    baseView.customAlert('Please select some files.');
+    return;
+  }
   const formData = new FormData();
 
   for (let i = 0; i < data.files.length; i++) {
     formData.append('files', data.files[i]);
   }
 
-  let grpDetails = document.querySelector('.grpDetails');
-  const url = `/api/groups/${grpDetails.dataset.grpid}`;
+  const url = `/api/groups/${baseView.DOMElementsgrpDetails.dataset.grpid}`;
   console.log(url);
   try {
     let res = await fetch(url, {
@@ -66,16 +65,12 @@ export const uploadFiles = async (data) => {
       // },
     });
 
-    // let res = await axios({
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'multipart/form-data' },
-    //   url: url,
-    //   data: form,
-    // });
-
-    // res = await res.json(); not needed here
-    // console.log(res);
     if (res) location.reload();
+    else {
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+    }
   } catch (err) {
     console.log(err);
   }
@@ -96,17 +91,23 @@ export const getGroupJoinLink = async (groupId) => {
 
     res = await res.json();
 
+    if (res.status != 'success') {
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+      return;
+    }
     // Writing Link on Clipboard
     navigator.clipboard.writeText(res.joinLink);
     const copyLinkText = baseView.DOMElements.copyJoinLinkBtn.textContent;
+    baseView.DOMElements.copyJoinLinkBtn.classList.add('grey-text');
     baseView.DOMElements.copyJoinLinkBtn.textContent = 'Link Copied!';
 
     // Ressetting text after copying
     setTimeout(() => {
       baseView.DOMElements.copyJoinLinkBtn.textContent = copyLinkText;
+      baseView.DOMElements.copyJoinLinkBtn.classList.remove('grey-text');
     }, 1000);
-
-    console.log(res);
   } catch (err) {
     console.log(err);
   }
@@ -134,28 +135,13 @@ export const joinGroup = async () => {
     });
 
     res = await res.json();
-    console.log(res);
+
+    if (res.status != 'success') {
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+    }
   } catch (err) {
     console.log(err);
   }
 };
-
-// Download Item Function
-//  Not Using Currently
-// export const downloadItem = async (filename) => {
-//   try {
-//     const url = `/api/groups/download/${filename}`;
-
-//     let res = await fetch(url, {
-//       method: 'GET',
-//       // credentials: 'same-origin', // This is to send cookies
-//       // headers: {
-//       //   'Content-Type': 'application/json',
-//       // },
-//     });
-
-//     console.log(res);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

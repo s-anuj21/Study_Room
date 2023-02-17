@@ -33,18 +33,20 @@
           margin-right: 8rem;
         }
 
-        &::after {
-          content: '';
-          position: absolute;
-          top: 110%;
-          left: 0;
-          width: 0%;
-          height: 2px;
-          background-color: $color-white;
-          transition: all 0.4s;
-        }
-        &:hover::after {
-          width: 100%;
+        &:not(&--user) {
+          &::after {
+            content: '';
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: $color-white;
+            transition: all 0.4s;
+          }
+          &:hover::after {
+            width: 100%;
+          }
         }
       }
     }

@@ -1,10 +1,10 @@
-/*------ WHEN LOGIN ROUTE IS HITTED -----*/
+import * as baseView from '../view/baseView.js';
+
+/*------ WHEN LOGIN ROUTE HITS -----*/
 export const login = async (email, password, st = '') => {
   email = email.trim();
   password = password.trim();
-  console.log('inside login');
   // Saving the url, to which want to redirect after login
-  console.log(window.location);
   const prevUrl = window.location;
   const data = {
     email,
@@ -24,7 +24,16 @@ export const login = async (email, password, st = '') => {
 
     res = await res.json();
 
-    if (res.status != 'error') window.location.assign(prevUrl);
+    console.log(res);
+
+    if (res.status == 'success' && prevUrl.pathname != '/login')
+      window.location.assign(prevUrl);
+    else if (res.status != 'success') {
+      // Alert Failed
+      let msg = res.message;
+      if (!msg) msg = 'Wrong Email or Password!!';
+      baseView.customAlert(msg);
+    } else window.location.assign('/');
   } catch (err) {
     console.log(err);
   }
@@ -68,9 +77,15 @@ export const signup = async (name, email, password, st = '') => {
 
     res = await res.json();
 
-    console.log(res);
+    if (res.status == 'success' && prevUrl.pathname != '/signup')
+      window.location.assign(prevUrl);
+    else if (res.status != 'success') {
+      //Alert Failed
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+    } else window.location.assign('/');
   } catch (err) {
-    // utilities.renderAlertSecondary(err.response.data.message);
     console.log(err);
   }
 };

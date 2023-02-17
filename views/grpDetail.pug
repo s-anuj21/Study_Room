@@ -2,7 +2,7 @@ extends base
 
 block content 
   main.main 
-    section.section.section--grpDetails.grpDetails
+    section.section.section--grpDetails.grpDetails(data-grpid=`${group._id}`)
       .grpDetails__wrapper
         .grpDetails__header
           .grpDetails__header__left
@@ -10,7 +10,7 @@ block content
             p.grpDetails__header__subject= group.subject
             p.grpDetails__header__validity= `${group.endDate}`
           .grpDetails__header__right 
-            a(data-grpid=`${group._id}`).btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
+            a.btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
 
         .grpDetails__contents
           .grpDetails__materials 
@@ -34,7 +34,7 @@ block content
              
           .grpDetails__members 
             h3.grpDetails__members__heading.heading.heading--tertiary Group Members
-            ul.grpDetails__members__list= newUser
+            ul.grpDetails__members__list
               each user in members
                 li.grpDetails__members__list__item
                   ion-icon(name="person-circle")

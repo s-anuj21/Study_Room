@@ -1,3 +1,13 @@
 .footer {
   background-color: $color-default;
+  padding: 4rem;
+  color: $color-grey-3;
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+
+  &__dev {
+    margin-top: 2rem;
+    font-weight: 400;
+  }
 }
