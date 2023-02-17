@@ -1,4 +1,4 @@
-// This file will contain configuration which is related to express
+// THIS FILE WILL CONTAIN CONFIGURATION WHICH IS RELATED TO EXPRESS
 const path = require('path');
 const express = require('express');
 const pug = require('pug');
@@ -16,7 +16,7 @@ app.set('view engine', 'pug');
 // __dirname -> current directory
 app.set('views', path.join(__dirname, 'views'));
 
-// For going to the exact path, in the pug, we are moving current dir to public
+// FOR GOING TO THE EXACT PATH, IN THE PUG, WE ARE MOVING CURRENT DIR TO PUBLIC
 app.use(express.static(path.join(__dirname, '/public')));
 
 // express.json() is a middleware, it parses the json in the incoming req object
@@ -24,23 +24,22 @@ app.use(express.json());
 // doubt
 app.use(express.urlencoded({ extended: true }));
 
-// Need to find out why dout
+// IT ENABLES US TO USE DATA RECEIVED IN REQ.BODY
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
 
-// To access cookie at backend
+// TO ACCESS COOKIE AT BACKEND
 app.use(cookieParser());
 
-// Mounting Routers
-
+// MOUNTING ROUTERS
 app.use('/api/users', userRouter);
 app.use('/api/groups', groupRouter);
 app.use('/', viewRouter);
 
-// A middleware which runs a unidenfied route is called
+// A MIDDLEWARE WHICH RUNS A UNIDENFIED ROUTE IS CALLED
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't Find ${req.originalUrl} on this server!`, 404));
 });
@@ -51,7 +50,7 @@ app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
-  // When data is requested through api
+  // WHEN DATA IS REQUESTED THROUGH API
   if (req.originalUrl.startsWith('/api')) {
     res.status(err.statusCode).json({
       err: err.status,
@@ -60,9 +59,8 @@ app.use((err, req, res, next) => {
       stack: err.stack,
     });
   }
-  // When page is requested
+  // WHEN PAGE IS REQUESTED
   else {
-    console.log(err);
     if (err.statusCode === 401) {
       return res.status(err.statusCode).render('login', {
         title: 'Login to Continue!!',
@@ -74,15 +72,8 @@ app.use((err, req, res, next) => {
       message: err.message,
     });
   }
-
-  console.log(err);
-
-  // res.status(err.statusCode).json({
-  //   status: err.status,
-  //   message: err.message,
-  // });
 });
 
-// End of error handler func
+// END OF ERROR HANDLER FUNC
 
 module.exports = app;

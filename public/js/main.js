@@ -107,15 +107,3 @@ if (baseView.DOMElements.modalOkBtn) {
 }
 
 //
-
-// Handling the Download button click
-// if (baseView.DOMElements.btnDownloadMaterial) {
-//   baseView.DOMElements.btnDownloadMaterial.addEventListener('click', (e) => {
-//     e.preventDefault();
-
-//     console.log('clicked');
-//     grpController.downloadItem(
-//       baseView.DOMElements.btnDownloadMaterial.dataset.item
-//     );
-//   });
-// }

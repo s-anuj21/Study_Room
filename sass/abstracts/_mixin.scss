@@ -1,0 +1,22 @@
+@mixin respond($breakpoint) {
+  // For 1366px
+  @if $breakpoint == mini-lap {
+    @media (max-width: 1366px) {
+      @content;
+    }
+  }
+
+  // For 1000px
+  @if $breakpoint == tab {
+    @media (max-width: 1000px) {
+      @content;
+    }
+  }
+
+  // For 600px
+  @if $breakpoint == phone {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+}

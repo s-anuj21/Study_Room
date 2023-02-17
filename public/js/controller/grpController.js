@@ -54,7 +54,7 @@ export const uploadFiles = async (data) => {
     formData.append('files', data.files[i]);
   }
 
-  const url = `/api/groups/${baseView.DOMElementsgrpDetails.dataset.grpid}`;
+  const url = `/api/groups/${baseView.DOMElements.grpDetails.dataset.grpid}`;
   console.log(url);
   try {
     let res = await fetch(url, {

@@ -11,10 +11,17 @@
     text-transform: uppercase;
     background-color: $color-default;
     box-shadow: 0 0.2rem 1rem $color-grey-1;
+
+    @include respond(phone) {
+      padding: 2rem;
+    }
     &__logo {
       // display: inli
       &__img {
         height: 4rem;
+        @include respond(phone) {
+          height: 3.5rem;
+        }
       }
       // margin-left: 3rem;
     }
@@ -31,6 +38,10 @@
 
         &:not(:last-child) {
           margin-right: 8rem;
+
+          @include respond(phone) {
+            display: none;
+          }
         }
 
         &:not(&--user) {

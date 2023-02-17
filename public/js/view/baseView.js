@@ -107,6 +107,7 @@ if (DOMElements.dateToday) {
 
   today = yyyy + '-' + mm + '-' + dd;
   DOMElements.dateToday.value = today;
+  DOMElements.dateEnd.setAttribute('min', today);
 }
 
 // Custom ALert

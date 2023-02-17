@@ -46,6 +46,8 @@ export const signup = async (name, email, password, st = '') => {
   email = email.trim();
   password = password.trim();
 
+  const prevUrl = window.location;
+
   const data = {
     name,
     email,

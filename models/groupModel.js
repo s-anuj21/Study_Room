@@ -2,20 +2,20 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
-// Designing User Schema
+// DESIGNING USER SCHEMA
 const groupSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, ''],
+    required: [true, 'A Group must have a name.'],
   },
   subject: {
     type: String,
-    required: [true, ''],
+    required: [true, 'A Group must have a subject.'],
   },
   leader: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    required: [true, ''],
+    required: [true, 'A group must have a leader.'],
   },
   members: [
     {
@@ -43,13 +43,13 @@ const groupSchema = new mongoose.Schema({
     type: String,
   },
 
-  // This is just for short term purposes, for joining groups
+  // THIS IS JUST FOR SHORT TERM PURPOSES, FOR JOINING GROUPS
   groupJoinToken: String,
   groupJoinTokenExpires: Date,
 });
 
 groupSchema.methods.createJoinToken = async function () {
-  // Generating 16 character string
+  // GENERATING 16 CHARACTER STRING
   const token = crypto.randomBytes(8).toString('hex');
   this.groupJoinToken = await bcrypt.hash(token, 8);
   this.groupJoinTokenExpires = Date.now() + 6 * 60 * 60 * 1000;

@@ -6,7 +6,6 @@ const { catchAsyncError } = require('../utils/util');
 const AppError = require('../utils/appError');
 
 exports.getAllGroups = (req, res) => {
-  // console.log(req.body);
   res.status(500).json({
     status: 'error',
     message: 'This route has been not implemented yet',
@@ -25,7 +24,6 @@ exports.downloadItem = catchAsyncError(async (req, res, next) => {
     __dirname,
     `../public/res/studyMaterials/${req.params.itemName}`
   );
-  // console.log(filePath);
   await res.download(filePath);
 });
 
@@ -42,7 +40,7 @@ exports.createGroup = catchAsyncError(async (req, res, next) => {
     return next(new AppError('Grp Creation Failed!!!', 500));
   }
 
-  // Updating Group User Schema
+  // UPDATING GROUP USER SCHEMA
   await User.updateOne(
     { _id: req.user._id },
     { $addToSet: { groups: grp._id } }
@@ -54,7 +52,6 @@ exports.createGroup = catchAsyncError(async (req, res, next) => {
   });
 });
 
-//Spent 3 Hours figuring this
 //1) req.body and req.file is set by multer
 const multerStorage = multer.diskStorage({
   destination: (req, file, callBack) => {
@@ -69,12 +66,11 @@ const upload = multer({
   storage: multerStorage,
 });
 
-// it returns a middleware func, which is assigned to uploadMaterial
+// IT RETURNS A MIDDLEWARE FUNC, WHICH IS ASSIGNED TO UPLOADMATERIAL
 exports.uploadMaterial = upload.array('files');
 
 exports.updateGroup = catchAsyncError(async (req, res, next) => {
   const grpId = req.params.grpId;
-  console.log('b', req.params);
   const group = await Group.findById(grpId);
   if (!group) return next(new AppError(`Grp Doesn't exist`));
 
@@ -88,16 +84,12 @@ exports.updateGroup = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// Creating Token ,which will be used while joining grp
+// CREATING TOKEN ,WHICH WILL BE USED WHILE JOINING GRP
 exports.getJoinLink = catchAsyncError(async (req, res) => {
   const group = await Group.findById(req.params.grpId);
   const joinToken = await group.createJoinToken();
 
-  console.log(req.protocol, req.hostname);
-
   const joinUrl = `${req.protocol}://${req.hostname}:${process.env.PORT}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
-
-  console.log(joinUrl);
 
   res.status(200).json({
     status: 'success',

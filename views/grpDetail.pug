@@ -8,7 +8,9 @@ block content
           .grpDetails__header__left
             h2.grpDetails__header__heading.heading.heading--primary= group.name
             p.grpDetails__header__subject= group.subject
-            p.grpDetails__header__validity= `${group.endDate}`
+            -let [year, month, day] = group.endDate.split('-');
+            -let monthText = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+            p.grpDetails__header__validity= `Valid Till ${day} ${monthText[month-1]} ${year}`
           .grpDetails__header__right 
             a.btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
 
@@ -43,7 +45,7 @@ block content
         
         // Custom Alert
         -if(newUser) 
-          .modalAlert 
+          .modalAlert.showAlert
             .modalAlert__content 
               .modalAlert__para= `Congratulations!! You are now member of `
                 span.modalAlert__para__grpName= `${group.name}.`

@@ -8,6 +8,14 @@ html {
   // @include respond(phone) {
   //   font-size: 8.5px;
   // }
+
+  @include respond(tab) {
+    font-size: 9px;
+  }
+
+  // @include respond(phone) {
+  //   font-size: 8px;
+  // }
 }
 
 *,
@@ -34,6 +42,10 @@ body {
   background-color: $color-white;
   padding: 3rem;
   line-height: 140%;
+
+  @include respond(tab) {
+    padding: 0;
+  }
   // background-color: $color-grey-light-1;
 }
 
@@ -99,9 +111,21 @@ a {
   padding: 6rem 0;
   background-color: $color-grey-3;
 
+  @include respond(phone) {
+    padding: 4rem 0;
+  }
+
   &__form__svg {
     & img {
       width: 75rem;
+
+      @include respond(mini-lap) {
+        width: 60rem;
+      }
+
+      @include respond(tab) {
+        display: none;
+      }
     }
   }
 
@@ -109,11 +133,14 @@ a {
   &--signup {
     background-image: linear-gradient(
       to right bottom,
-      rgba(243, 157, 18, 0.15),
-      rgba(230, 125, 34, 0.15)
+      rgba(243, 157, 18, 0.4),
+      rgba(230, 125, 34, 0.45)
     );
     background-size: content;
     background-repeat: no-repeat;
+    @include respond(phone) {
+      padding: 0;
+    }
   }
 
   &--gradient {
@@ -143,6 +170,14 @@ a {
     // margin-right: 10rem;
     background-color: $color-white;
     // box-shadow: 0rem 1rem 4rem $color-grey-2;
+    @include respond(mini-lap) {
+      margin-right: 2rem;
+    }
+
+    @include respond(phone) {
+      margin-right: 0;
+      background-color: transparent;
+    }
   }
 }
 

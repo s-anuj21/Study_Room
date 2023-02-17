@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const { catchAsyncError } = require('../utils/util');
 
+// THIS IS FOR DASHBOARD PAGE, WHICH IS CALLED ON '/'
 exports.getDashboard = catchAsyncError(async (req, res, next) => {
   let grps = {};
 
@@ -23,6 +24,7 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
   });
 });
 
+// THIS RENDERS THE GROUPS DETAILS AND MEMBER INFO
 exports.getGroupDetails = async (req, res, next, newUser = false) => {
   try {
     const group = await Group.findById(req.params.grpId);
@@ -33,7 +35,7 @@ exports.getGroupDetails = async (req, res, next, newUser = false) => {
       _id: { $in: group.members },
     });
 
-    // Check if user is not present in members, than divert to dashboard
+    // CHECK IF USER IS NOT PRESENT IN MEMBERS, THAN DIVERT TO DASHBOARD
     if (!group.members.includes(req.user._id)) {
       return res.redirect('/');
     }
@@ -55,7 +57,7 @@ exports.joinGroup = catchAsyncError(async (req, res, next) => {
 
   const group = await Group.findById(req.params.grpId);
 
-  // If user already exist then redirect to dashboard
+  // IF USER ALREADY EXIST THEN REDIRECT TO DASHBOARD
   if (group.members.includes(user._id)) {
     return res.redirect('/');
   }

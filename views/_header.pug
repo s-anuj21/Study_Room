@@ -10,11 +10,12 @@ header.header
       if user
         li.nav__list__item.nav__list__item--user= `Welcome, ${user.name}`
         li.nav__list__item
-          a.nav__list__item__logout Logout 
+          a.nav__list__item__logout Log out 
       else
         li.nav__list__item
           a(href = "/login") Login
   
+-if(!newUser)
   .modalAlert 
     .modalAlert__content 
       p.modalAlert__para
