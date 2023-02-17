@@ -18,7 +18,7 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
     grps[i].leaderName = currUser.name;
   }
 
-  res.status(200).render('dashboard', {
+  res.status(200).render('dashBoard', {
     title: 'Study Room',
     grps,
   });
