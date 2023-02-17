@@ -83,6 +83,11 @@ a {
   padding: 6rem 0;
   background-color: #eee;
 }
+@media (max-width: 1000px) {
+  .section {
+    justify-content: center;
+  }
+}
 @media (max-width: 600px) {
   .section {
     padding: 4rem 0;
@@ -102,9 +107,14 @@ a {
   }
 }
 .section--login, .section--signup {
-  background-image: linear-gradient(to right bottom, rgba(243, 157, 18, 0.4), rgba(230, 125, 34, 0.45));
+  background-image: linear-gradient(to right bottom, rgba(243, 157, 18, 0.4), rgba(230, 125, 34, 0.8));
   background-size: content;
   background-repeat: no-repeat;
+}
+@media (max-width: 1000px) {
+  .section--login, .section--signup {
+    background-image: none;
+  }
 }
 @media (max-width: 600px) {
   .section--login, .section--signup {
@@ -134,10 +144,14 @@ a {
     margin-right: 2rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .section__wrapper__inner--form {
     margin-right: 0;
-    background-color: transparent;
+  }
+}
+@media (max-width: 600px) {
+  .section__wrapper__inner--form {
+    background-image: transparent;
   }
 }
 

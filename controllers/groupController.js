@@ -89,7 +89,11 @@ exports.getJoinLink = catchAsyncError(async (req, res) => {
   const group = await Group.findById(req.params.grpId);
   const joinToken = await group.createJoinToken();
 
-  const joinUrl = `${req.protocol}://${req.hostname}:${process.env.PORT}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
+  let joinUrl = '';
+  if (process.env.NODE_ENV == 'development')
+    joinUrl = `${req.protocol}://${req.hostname}:${process.env.PORT}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
+  else
+    joinUrl = `${req.protocol}://${req.hostname}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
 
   res.status(200).json({
     status: 'success',

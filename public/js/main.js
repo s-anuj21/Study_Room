@@ -105,5 +105,3 @@ if (baseView.DOMElements.modalOkBtn) {
     document.querySelector('.modalAlert').classList.remove('showAlert');
   });
 }
-
-//
