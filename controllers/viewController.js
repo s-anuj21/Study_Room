@@ -57,6 +57,20 @@ exports.joinGroup = catchAsyncError(async (req, res, next) => {
 
   const group = await Group.findById(req.params.grpId);
 
+  // CREATE ERROR IF GROUP DOESN'T EXIST
+  if (!group) {
+    return next(
+      new AppError(`The Group you are looking for doesn't exists`, 404)
+    );
+  }
+
+  // CHECK TOKEN, IF NOT VALID, REJECT USER
+  if (
+    !(await group.correctJoinToken(req.params.joinToken, group.groupJoinToken))
+  ) {
+    return next(new AppError(`The link is not valid.`, 400));
+  }
+
   // IF USER ALREADY EXIST THEN REDIRECT TO DASHBOARD
   if (group.members.includes(user._id)) {
     return res.redirect('/');
