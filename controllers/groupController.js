@@ -4,6 +4,7 @@ const Group = require('../models/groupModel');
 const User = require('../models/userModel');
 const { catchAsyncError } = require('../utils/util');
 const AppError = require('../utils/appError');
+const Email = require('../utils/email');
 
 exports.getAllGroups = (req, res) => {
   res.status(500).json({
@@ -91,7 +92,14 @@ exports.getJoinLink = catchAsyncError(async (req, res) => {
 
   const joinUrl = `${req.protocol}://${req.hostname}:${process.env.PORT}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
 
-  res.status(200).json({
+  // await new Email(
+  //   req.user,
+  //   joinUrl,
+  //   'anuj992393@gmail.com',
+  //   group.name
+  // ).sendJoinLink();
+
+  await res.status(200).json({
     status: 'success',
     joinLink: joinUrl,
   });
