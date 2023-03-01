@@ -169,20 +169,24 @@
     }
 
     @include respond(phone) {
-      transform: scale(0);
+      width: 0;
+      height: 0;
       position: absolute;
       top: 0;
       right: 2rem;
-      padding: 2rem;
-      padding-bottom: 1rem;
-      padding-right: 6rem;
+      padding: 0;
+      overflow: hidden;
       box-shadow: 0 0.5rem 1rem $color-grey-1;
       transition: all 0.3s;
     }
 
     &--show {
-      transform: scale(1);
-      transform-origin: top right;
+      width: 25rem;
+      padding: 2rem;
+      padding-bottom: 1rem;
+      padding-right: 6rem;
+      height: 25rem;
+      overflow: scroll;
     }
 
     &__heading {

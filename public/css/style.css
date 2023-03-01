@@ -604,20 +604,24 @@ a {
 }
 @media (max-width: 600px) {
   .grpDetails__members {
-    transform: scale(0);
+    width: 0;
+    height: 0;
     position: absolute;
     top: 0;
     right: 2rem;
-    padding: 2rem;
-    padding-bottom: 1rem;
-    padding-right: 6rem;
+    padding: 0;
+    overflow: hidden;
     box-shadow: 0 0.5rem 1rem #bdc3c7;
     transition: all 0.3s;
   }
 }
 .grpDetails__members--show {
-  transform: scale(1);
-  transform-origin: top right;
+  width: 25rem;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  padding-right: 6rem;
+  height: 25rem;
+  overflow: scroll;
 }
 .grpDetails__members__heading {
   margin-bottom: 5rem;
