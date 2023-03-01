@@ -249,6 +249,10 @@ a {
   font-size: 1.4rem;
 }
 
+.show {
+  display: block !important;
+}
+
 .header .nav {
   padding-bottom: 1rem;
   border-bottom: 2px solid #ddd;
@@ -442,6 +446,7 @@ a {
 @media (max-width: 600px) {
   .grpDetails__wrapper {
     padding: 0 2rem;
+    position: relative;
   }
 }
 .grpDetails__header {
@@ -481,6 +486,22 @@ a {
 @media (max-width: 600px) {
   .grpDetails__header__right {
     margin-top: 4rem;
+  }
+}
+.grpDetails__header__btnMembers {
+  position: absolute;
+  top: 1.5rem;
+  right: 3.5rem;
+  z-index: 34;
+}
+.grpDetails__header__btnMembers > ion-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #f39c12;
+}
+@media (max-width: 600px) {
+  .grpDetails__header__btnMembers {
+    display: block;
   }
 }
 .grpDetails__contents {
@@ -567,8 +588,45 @@ a {
     padding: 4rem;
   }
 }
+@media (max-width: 600px) {
+  .grpDetails__members {
+    transform: scale(0);
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    padding-right: 6rem;
+    box-shadow: 0 0.5rem 1rem #bdc3c7;
+    transition: all 0.3s;
+  }
+}
+.grpDetails__members--show {
+  transform: scale(1);
+  transform-origin: top right;
+}
 .grpDetails__members__heading {
   margin-bottom: 5rem;
+}
+@media (max-width: 600px) {
+  .grpDetails__members__heading {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+}
+.grpDetails__members__close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #fff;
+  padding: 1.7rem;
+  border-radius: 10rem;
+}
+@media (max-width: 600px) {
+  .grpDetails__members__close {
+    display: block;
+  }
 }
 .grpDetails__members__list__item {
   margin-bottom: 2rem;
@@ -580,6 +638,17 @@ a {
   width: 2.5rem;
   height: 2.5rem;
   margin-right: 0.5rem;
+}
+@media (max-width: 600px) {
+  .grpDetails__members__list__item ion-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .grpDetails__members__list__item {
+    margin-bottom: 1rem;
+  }
 }
 @media (max-width: 600px) {
   .grpDetails__footer__btn--upload {
