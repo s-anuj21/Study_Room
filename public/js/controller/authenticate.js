@@ -12,6 +12,7 @@ export const login = async (email, password, st = '') => {
   };
   try {
     const url = `/api/users/login`;
+    baseView.DOMElements.btnSubmit.disabled = true;
     let res = await fetch(url, {
       method: 'POST',
 
@@ -23,8 +24,7 @@ export const login = async (email, password, st = '') => {
     });
 
     res = await res.json();
-
-    console.log(res);
+    baseView.DOMElements.btnSubmit.disabled = false;
 
     if (res.status == 'success' && prevUrl.pathname != '/login')
       window.location.assign(prevUrl);
@@ -57,6 +57,8 @@ export const signup = async (name, email, password, st = '') => {
   try {
     const url = `/api/users/signup`;
 
+    baseView.DOMElements.btnSubmit.disabled = true;
+
     let res = await fetch(url, {
       method: 'POST',
       // credentials: 'same-origin', // This is to send cookies
@@ -67,17 +69,9 @@ export const signup = async (name, email, password, st = '') => {
       body: JSON.stringify(data),
     });
 
-    // const res = await axios({
-    //   method: 'POST',
-    //   url: url,
-
-    //   data: {
-    //     email,
-    //     password,
-    //   },
-    // });
-
     res = await res.json();
+
+    baseView.DOMElements.btnSubmit.disabled = false;
 
     if (res.status == 'success' && prevUrl.pathname != '/signup')
       window.location.assign(prevUrl);

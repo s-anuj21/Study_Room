@@ -1,6 +1,7 @@
 export const DOMElements = {
   formLogin: document.querySelector('.form--login'),
   formSignup: document.querySelector('.form--signup'),
+  btnSubmit: document.querySelector('.form__field__btn--submit'),
   formGrpCreation: document.querySelector('.form--grpCreation'),
   name: document.querySelector('.name'),
   email: document.querySelector('.email'),

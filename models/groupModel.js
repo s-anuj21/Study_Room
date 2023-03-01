@@ -52,9 +52,15 @@ groupSchema.methods.createJoinToken = async function () {
   // GENERATING 16 CHARACTER STRING
   const token = crypto.randomBytes(8).toString('hex');
   this.groupJoinToken = await bcrypt.hash(token, 8);
+
   this.groupJoinTokenExpires = Date.now() + 6 * 60 * 60 * 1000;
+  await this.save();
   return token;
 };
+
+// CREATING A INSTANCE METHOD ON GROUP SCHEMA TO VALIDATE TOKEN
+groupSchema.methods.correctJoinToken = async (enteredToken, dbToken) =>
+  await bcrypt.compare(enteredToken, dbToken);
 
 const Group = mongoose.model('Group', groupSchema);
 

@@ -106,8 +106,6 @@ if (baseView.DOMElements.modalOkBtn) {
   });
 }
 
-//
-
 // HANDLING CLICK ON MEMBER BUTTON
 if (baseView.DOMElements.memberBtnToggle) {
   baseView.DOMElements.memberBtnToggle.addEventListener('click', () => {

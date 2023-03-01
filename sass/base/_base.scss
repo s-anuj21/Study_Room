@@ -111,6 +111,10 @@ a {
   padding: 6rem 0;
   background-color: $color-grey-3;
 
+  @include respond(tab) {
+    justify-content: center;
+  }
+
   @include respond(phone) {
     padding: 4rem 0;
   }
@@ -134,10 +138,15 @@ a {
     background-image: linear-gradient(
       to right bottom,
       rgba(243, 157, 18, 0.4),
-      rgba(230, 125, 34, 0.45)
+      rgba(230, 125, 34, 0.8)
     );
     background-size: content;
     background-repeat: no-repeat;
+
+    @include respond(tab) {
+      background-image: none;
+    }
+
     @include respond(phone) {
       padding: 0;
     }
@@ -174,9 +183,12 @@ a {
       margin-right: 2rem;
     }
 
-    @include respond(phone) {
+    @include respond(tab) {
       margin-right: 0;
-      background-color: transparent;
+    }
+
+    @include respond(phone) {
+      background-image: transparent;
     }
   }
 }

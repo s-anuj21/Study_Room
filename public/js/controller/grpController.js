@@ -15,6 +15,7 @@ export const createGroup = async (name, subject, endDate, st = '') => {
   try {
     const url = `/api/groups`;
 
+    baseView.DOMElements.btnSubmit.disabled = true;
     let res = await fetch(url, {
       method: 'POST',
       // credentials: 'same-origin', // This is to send cookies
@@ -26,7 +27,8 @@ export const createGroup = async (name, subject, endDate, st = '') => {
     });
 
     res = await res.json();
-    console.log(res);
+
+    baseView.DOMElements.btnSubmit.disabled = false;
 
     if (res.status == 'success') window.location.assign('/');
     else {
@@ -55,7 +57,8 @@ export const uploadFiles = async (data) => {
   }
 
   const url = `/api/groups/${baseView.DOMElements.grpDetails.dataset.grpid}`;
-  console.log(url);
+
+  baseView.DOMElements.btnSubmit.disabled = true;
   try {
     let res = await fetch(url, {
       method: 'POST',
@@ -64,6 +67,8 @@ export const uploadFiles = async (data) => {
       //   'Content-Type': 'multipart/form-data',
       // },
     });
+
+    baseView.DOMElements.btnSubmit.disabled = false;
 
     if (res) location.reload();
     else {
@@ -116,32 +121,31 @@ export const getGroupJoinLink = async (groupId) => {
 // ###################
 
 // Join Grp
+// export const joinGroup = async () => {
+//   try {
+//     const data = {
+//       groupId: `63ea8732d47ee6bf3a6eae2a`,
+//     };
+//     const url = `/api/users/updateMe/`;
 
-export const joinGroup = async () => {
-  try {
-    const data = {
-      groupId: `63ea8732d47ee6bf3a6eae2a`,
-    };
-    const url = `/api/users/updateMe/`;
+//     let res = await fetch(url, {
+//       method: 'PATCH',
+//       // credentials: 'same-origin', // This is to send cookies
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
 
-    let res = await fetch(url, {
-      method: 'PATCH',
-      // credentials: 'same-origin', // This is to send cookies
-      headers: {
-        'Content-Type': 'application/json',
-      },
+//       body: JSON.stringify(data),
+//     });
 
-      body: JSON.stringify(data),
-    });
+//     res = await res.json();
 
-    res = await res.json();
-
-    if (res.status != 'success') {
-      let msg = res.message;
-      if (!msg) msg = 'Something went wrong!!';
-      baseView.customAlert(msg);
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     if (res.status != 'success') {
+//       let msg = res.message;
+//       if (!msg) msg = 'Something went wrong!!';
+//       baseView.customAlert(msg);
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
