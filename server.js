@@ -1,6 +1,10 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+// Running browser auto
+// const open = require('open');
+// open('http://localhost:4000/');
+
 dotenv.config({ path: './config.env' });
 
 const app = require('./index');
@@ -21,8 +25,8 @@ mongoose
     console.log('DB connection successful!');
   });
 
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 4000;
 
-app.listen(port, (req, res) => {
-  console.log(`Running Server on port ${port}`);
-});
+// app.listen(port, (req, res) => {
+//   console.log(`Running Server on port ${port}`);
+// });

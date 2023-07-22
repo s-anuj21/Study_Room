@@ -23,6 +23,11 @@ export const DOMElements = {
   modalOkBtn: document.querySelector('.modalAlert__btn--ok'),
   passwordConfirm: document.querySelector('.password--confirm'),
   inputCommonArr: Array.from(document.querySelectorAll('.form__field__input')),
+
+  // chatRoom
+  chatRoomMsgsList: document.querySelector('.chatRoom__messages__list'),
+  chatRoomForm: document.querySelector('.chatRoom__form'),
+  chatRoomInput: document.querySelector('.chatRoom__form__input')
 };
 
 // Validations

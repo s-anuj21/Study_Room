@@ -4,6 +4,7 @@ const router = express.Router();
 
 const groupController = require('../controllers/groupController');
 const authController = require('../controllers/authController');
+const messageController = require('../controllers/messageController');
 
 // Restrticting
 router.use(authController.protect);
@@ -21,5 +22,6 @@ router
 
 router.get('/download/:itemName', groupController.downloadItem);
 router.get('/:grpId/joinToken', groupController.getJoinLink);
+router.post('/:grpId/chatRoom/:userId', messageController.sendMessage);
 
 module.exports = router;

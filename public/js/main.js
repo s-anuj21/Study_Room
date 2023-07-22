@@ -5,6 +5,7 @@
 import * as baseView from './view/baseView.js';
 import * as authenticate from './controller/authenticate.js';
 import * as grpController from './controller/grpController.js';
+import * as chatView from './view/chatView.js';
 
 // ## When Login Form is submitted
 if (baseView.DOMElements.formLogin) {
@@ -105,3 +106,17 @@ if (baseView.DOMElements.modalOkBtn) {
     document.querySelector('.modalAlert').classList.remove('showAlert');
   });
 }
+
+/// Experimentig
+
+// Handling chat input submission
+if (baseView.DOMElements.chatRoomForm) {
+  baseView.DOMElements.chatRoomForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (baseView.DOMElements.chatRoomInput.value) {
+      chatView.handleChatInput(baseView.DOMElements.chatRoomInput.value);
+    }
+  });
+}
+
+// end

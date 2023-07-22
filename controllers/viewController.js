@@ -1,4 +1,5 @@
 const Group = require('../models/groupModel');
+const Message = require('../models/messageModel');
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const { catchAsyncError } = require('../utils/util');
@@ -13,10 +14,13 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
     });
   }
 
-  for (let i = 0; i < grps.length; i++) {
-    let currUser = await User.findById(grps[i].leader);
-    grps[i].leaderName = currUser.name;
-  }
+  grps = await Promise.all(
+    grps.map(async (el) => {
+      const currUser = await User.findById(el.leader);
+      el.leaderName = currUser.name;
+      return el;
+    })
+  );
 
   res.status(200).render('dashBoard', {
     title: 'Study Room',
@@ -35,6 +39,23 @@ exports.getGroupDetails = async (req, res, next, newUser = false) => {
       _id: { $in: group.members },
     });
 
+    let messages = await Message.find({
+      _id: { $in: group.messages },
+    });
+
+    messages = await Promise.all(
+      messages.map(async (el) => {
+        //comparing loggined user and the person who has send it
+        if (el.user == req.user._id.toString()) {
+          el.userName = 'You';
+          return el;
+        }
+        const currUser = await User.findById(el.user);
+        el.userName = currUser.name;
+        return el;
+      })
+    );
+
     // CHECK IF USER IS NOT PRESENT IN MEMBERS, THAN DIVERT TO DASHBOARD
     if (!group.members.includes(req.user._id)) {
       return res.redirect('/');
@@ -45,6 +66,7 @@ exports.getGroupDetails = async (req, res, next, newUser = false) => {
       group,
       members,
       newUser,
+      messages,
     });
   } catch (err) {
     next(err);

@@ -7,6 +7,34 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+
+// Adding chatRoom
+const http = require('http');
+const socketio = require('socket.io');
+
+const server = http.createServer(app);
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+  socket.on('new_user_joined', (data) => {
+    // Creating room for this group id
+    socket.join(data.groupId);
+
+    // sockets.in(data.groupId).emit('user_joined', data.user); //emits to all
+    socket.broadcast.to(data.groupId).emit('user_joined', data.user);
+  });
+
+  socket.on('msg-send', (data) => {
+    socket.join(data.groupId);
+
+    // sockets.in(data.groupId).emit('msg-receive', data);
+    socket.broadcast.to(data.groupId).emit('msg-receive', data);
+    console.log(data);
+  });
+});
+
+server.listen(4000, () => console.log(`App listening on port 4000`));
+
 const userRouter = require('./routes/userRoutes');
 const groupRouter = require('./routes/groupRoutes');
 const viewRouter = require('./routes/viewRoutes');
@@ -49,6 +77,8 @@ app.use((err, req, res, next) => {
   console.log('Inside Error Handler function....');
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
+
+  console.log(err);
 
   // WHEN DATA IS REQUESTED THROUGH API
   if (req.originalUrl.startsWith('/api')) {

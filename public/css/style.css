@@ -325,6 +325,84 @@ a {
   box-shadow: 0 0.5rem 1rem #bdc3c7;
 }
 
+.chatRoom {
+  border: 2px solid #ddd;
+  height: 50rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-top: 3rem;
+}
+.chatRoom::-webkit-scrollbar {
+  width: 0.8rem;
+}
+.chatRoom::-webkit-scrollbar-track {
+  background-color: #fdedd4;
+  border-radius: 10rem;
+}
+.chatRoom::-webkit-scrollbar-thumb {
+  background-color: #f5b043;
+  border-radius: 10rem;
+}
+.chatRoom__heading {
+  padding: 0 4rem;
+  font-size: 1.6rem;
+}
+.chatRoom__messages {
+  padding: 1.5rem;
+  padding-top: 4rem;
+}
+.chatRoom__messages__list {
+  margin-bottom: 1rem;
+}
+.chatRoom__messages__list__item {
+  list-style: none;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+.chatRoom__messages__list__item__info {
+  display: flex;
+  flex-basis: fit-content;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: 1.5px solid #f5b043;
+}
+.chatRoom__messages__list__item__info__user {
+  color: #e67e22;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.chatRoom__messages__list__item__info__time {
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-align: right;
+  font-weight: 500;
+  margin-left: 1rem;
+}
+.chatRoom__messages__list__item--left > div {
+  background-color: #fff;
+}
+.chatRoom__messages__list__item--right {
+  justify-content: right;
+}
+.chatRoom__messages__list__item--right > div {
+  background-color: #fdedd4;
+  border: none;
+}
+.chatRoom__form {
+  display: flex;
+  padding: 1.5rem;
+}
+.chatRoom__form__input {
+  flex: 90% 1 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+.chatRoom__form__input:focus {
+  outline: none;
+}
 .footer {
   background-color: #333;
   padding: 4rem;
@@ -503,6 +581,26 @@ a {
   justify-content: space-between;
   background-color: #fff;
 }
+.grpDetails__contents--leftSide {
+  flex: 70% 1 1;
+}
+.grpDetails__contents__tabs__btns {
+  display: flex;
+  border: 1px solid #f39c12;
+}
+.grpDetails__contents__tabs__btns button {
+  flex-basis: 50%;
+  padding: 2rem;
+  border: none;
+  cursor: pointer;
+}
+.grpDetails__contents__tabs__btns--active {
+  background-color: #f39c12;
+  color: #fff;
+}
+.grpDetails__contents__tabs__btns--chatRoom {
+  background-color: #fff;
+}
 @media (max-width: 600px) {
   .grpDetails__contents {
     flex-direction: column;
@@ -510,7 +608,6 @@ a {
 }
 .grpDetails__materials {
   padding: 5rem;
-  flex: 70% 1 1;
 }
 @media (max-width: 1000px) {
   .grpDetails__materials {

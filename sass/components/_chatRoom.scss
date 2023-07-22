@@ -1,0 +1,98 @@
+.chatRoom {
+  border: 2px solid $color-grey-2;
+  height: 50rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-top: 3rem;
+
+  // Customizing Scrollbar
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $color-primary-light-1;
+    border-radius: 10rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-primary-light-2;
+    border-radius: 10rem;
+  }
+
+  &__heading {
+    padding: 0 4rem;
+    font-size: 1.6rem;
+  }
+  &__content {
+  }
+
+  &__messages {
+    padding: 1.5rem;
+    padding-top: 4rem;
+    &__list {
+      margin-bottom: 1rem;
+      &__item {
+        list-style: none;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        display: flex;
+        &__info {
+          display: flex;
+          flex-basis: fit-content;
+          flex-direction: column;
+          padding: 0.5rem 1rem;
+          border-radius: 0.4rem;
+          border: 1.5px solid $color-primary-light-2;
+          &__user {
+            color: $color-secondary;
+            font-weight: 700;
+            font-size: 1.2rem;
+          }
+
+          &__msg {
+          }
+
+          &__time {
+            font-size: 1rem;
+            letter-spacing: 0;
+            text-align: right;
+            font-weight: 500;
+            margin-left: 1rem;
+          }
+        }
+
+        &--left {
+          & > div {
+            background-color: $color-white;
+          }
+        }
+
+        &--right {
+          justify-content: right;
+          & > div {
+            background-color: $color-primary-light-1;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    padding: 1.5rem;
+    // background-color: $color-grey-2;
+    &__input {
+      flex: 90% 1 1;
+      padding: 0.5rem 1rem;
+      border: 1px solid $color-grey-2;
+      background-color: $color-white;
+      &:focus {
+        outline: none;
+      }
+    }
+    &__sendBtn {
+    }
+  }
+}

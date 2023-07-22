@@ -34,6 +34,13 @@ const groupSchema = new mongoose.Schema({
     default: true,
   },
 
+  messages: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Message',
+    },
+  ],
+
   startDate: {
     type: Date,
     default: Date.now(),
