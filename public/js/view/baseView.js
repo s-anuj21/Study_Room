@@ -10,6 +10,7 @@ export const DOMElements = {
   grpSubject: document.querySelector('.grpSubject'),
   btnGrpJoin: document.querySelector('.btn--grpJoin'),
   grpDetails: document.querySelector('.grpDetails'),
+  grpMaterials: document.querySelector('.grpDetails__materials'),
   btnDownloadMaterial: document.querySelector(
     '.grpDetails__materials__list__item__btnDownload'
   ),
@@ -25,9 +26,17 @@ export const DOMElements = {
   inputCommonArr: Array.from(document.querySelectorAll('.form__field__input')),
 
   // chatRoom
+  chatRoom: document.querySelector('.chatRoom'),
+  chatRoomContainer: document.querySelector('.chatRoom__container'),
   chatRoomMsgsList: document.querySelector('.chatRoom__messages__list'),
   chatRoomForm: document.querySelector('.chatRoom__form'),
-  chatRoomInput: document.querySelector('.chatRoom__form__input')
+  chatRoomInput: document.querySelector('.chatRoom__form__input'),
+  materialBtnTab: document.querySelector(
+    '.grpDetails__contents__tabs__btns--material'
+  ),
+  chatRoomBtnTab: document.querySelector(
+    '.grpDetails__contents__tabs__btns--chatRoom'
+  ),
 };
 
 // Validations

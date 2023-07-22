@@ -107,8 +107,6 @@ if (baseView.DOMElements.modalOkBtn) {
   });
 }
 
-/// Experimentig
-
 // Handling chat input submission
 if (baseView.DOMElements.chatRoomForm) {
   baseView.DOMElements.chatRoomForm.addEventListener('submit', (e) => {
@@ -120,3 +118,37 @@ if (baseView.DOMElements.chatRoomForm) {
 }
 
 // end
+
+// Making tabs work
+const handleTabSwich = (btn, el, otherBtn, otherEl) => {
+  el.style.display = 'block';
+  btn.style.backgroundColor = '#e67e22';
+  otherEl.style.display = 'none';
+  otherBtn.style.backgroundColor = '#fff';
+};
+
+if (baseView.DOMElements.grpDetails) {
+  baseView.DOMElements.chatRoomBtnTab.addEventListener('click', () => {
+    handleTabSwich(
+      baseView.DOMElements.chatRoomBtnTab,
+      baseView.DOMElements.chatRoom,
+      baseView.DOMElements.materialBtnTab,
+      baseView.DOMElements.grpMaterials
+    );
+
+    baseView.DOMElements.chatRoomContainer.scrollTop =
+      baseView.DOMElements.chatRoomContainer.scrollHeight;
+  });
+
+  baseView.DOMElements.materialBtnTab.addEventListener('click', () => {
+    handleTabSwich(
+      baseView.DOMElements.materialBtnTab,
+      baseView.DOMElements.grpMaterials,
+      baseView.DOMElements.chatRoomBtnTab,
+      baseView.DOMElements.chatRoom
+    );
+
+    baseView.DOMElements.grpMaterials.scrollTop =
+      baseView.DOMElements.grpMaterials.scrollHeight;
+  });
+}

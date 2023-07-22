@@ -5,7 +5,7 @@ const socket = io();
 const formatTime = (dateStr) => {
   const msgDate = new Date(dateStr);
   let hours = msgDate.getHours();
-  const minutes = msgDate.getMinutes();
+  let minutes = msgDate.getMinutes();
 
   let period = 'AM';
   if (hours > 12) {
@@ -34,11 +34,14 @@ const addMessage = (msg, user, pos) => {
         </li>
     `;
 
+  console.log('aar');
   baseView.DOMElements.chatRoomMsgsList.insertAdjacentHTML(
     'beforeend',
     itemMarkup
   );
-  // window.scrollTo(0, document.body.scrollHeight);
+
+  baseView.DOMElements.chatRoomContainer.scrollTop =
+    baseView.DOMElements.chatRoomContainer.scrollHeight;
 };
 // end of addmessage function
 

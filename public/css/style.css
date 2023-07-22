@@ -263,6 +263,18 @@ a {
   font-size: 1.4rem;
 }
 
+.scrollbarCustom::-webkit-scrollbar {
+  width: 0.8rem;
+}
+.scrollbarCustom::-webkit-scrollbar-track {
+  background-color: #eee;
+  border-radius: 10rem;
+}
+.scrollbarCustom::-webkit-scrollbar-thumb {
+  background-color: #ced6e0;
+  border-radius: 10rem;
+}
+
 .header .nav {
   padding-bottom: 1rem;
   border-bottom: 2px solid #ddd;
@@ -326,30 +338,22 @@ a {
 }
 
 .chatRoom {
-  border: 2px solid #ddd;
-  height: 50rem;
-  overflow: scroll;
-  overflow-x: hidden;
-  padding-top: 3rem;
+  display: none;
+  position: relative;
 }
-.chatRoom::-webkit-scrollbar {
-  width: 0.8rem;
-}
-.chatRoom::-webkit-scrollbar-track {
-  background-color: #fdedd4;
-  border-radius: 10rem;
-}
-.chatRoom::-webkit-scrollbar-thumb {
-  background-color: #f5b043;
-  border-radius: 10rem;
+.chatRoom__container {
+  overflow: auto;
+  height: 60rem;
+  padding-top: 5rem;
 }
 .chatRoom__heading {
   padding: 0 4rem;
   font-size: 1.6rem;
 }
 .chatRoom__messages {
-  padding: 1.5rem;
-  padding-top: 4rem;
+  padding: 3rem;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
 }
 .chatRoom__messages__list {
   margin-bottom: 1rem;
@@ -393,16 +397,38 @@ a {
 .chatRoom__form {
   display: flex;
   padding: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-right: 0;
+  background-color: #f5f6f6;
 }
 .chatRoom__form__input {
   flex: 90% 1 1;
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
   background-color: #fff;
+  border-radius: 1rem;
+  border: none;
 }
 .chatRoom__form__input:focus {
   outline: none;
 }
+.chatRoom__form__sendBtn {
+  padding: 1rem 2.5rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+  width: fit-content;
+  border: none;
+  color: #333;
+  background-color: transparent;
+}
+.chatRoom__form__sendBtn > ion-icon {
+  color: #333;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .footer {
   background-color: #333;
   padding: 4rem;
@@ -515,7 +541,7 @@ a {
 }
 
 .section--grpDetails {
-  padding-top: 10rem;
+  padding-top: 6rem;
 }
 .grpDetails__wrapper {
   width: 100%;
@@ -542,7 +568,7 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5rem;
-  padding: 5rem;
+  padding: 4rem 5rem;
   background-color: #fff;
 }
 @media (max-width: 1000px) {
@@ -586,17 +612,19 @@ a {
 }
 .grpDetails__contents__tabs__btns {
   display: flex;
-  border: 1px solid #f39c12;
+  border: 1.5px solid #ddd;
+  color: #000;
 }
 .grpDetails__contents__tabs__btns button {
   flex-basis: 50%;
   padding: 2rem;
+  text-transform: uppercase;
+  font-weight: 600;
   border: none;
   cursor: pointer;
 }
 .grpDetails__contents__tabs__btns--active {
   background-color: #f39c12;
-  color: #fff;
 }
 .grpDetails__contents__tabs__btns--chatRoom {
   background-color: #fff;
@@ -608,6 +636,9 @@ a {
 }
 .grpDetails__materials {
   padding: 5rem;
+  overflow: auto;
+  height: 60rem;
+  padding-top: 5rem;
 }
 @media (max-width: 1000px) {
   .grpDetails__materials {
@@ -670,8 +701,8 @@ a {
 }
 .grpDetails__members {
   padding: 5rem;
-  background-color: #f39c12;
-  color: #fff;
+  background-color: #dfe4ea;
+  color: #000;
 }
 @media (max-width: 1000px) {
   .grpDetails__members {

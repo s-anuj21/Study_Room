@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 dotenv.config({ path: './config.env' });
 
-const app = require('./index');
+const server = require('./index');
 // This file is the entry point for the program, and the contents it contain is solely related to server.
 
 // Connecting Database
@@ -27,6 +27,6 @@ mongoose
 
 const port = process.env.PORT || 4000;
 
-// app.listen(port, (req, res) => {
+// server.listen(port, (req, res) => {
 //   console.log(`Running Server on port ${port}`);
 // });

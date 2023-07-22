@@ -21,8 +21,8 @@ block content
                 button.grpDetails__contents__tabs__btns--material.grpDetails__contents__tabs__btns--active Study Material 
                 button.grpDetails__contents__tabs__btns--chatRoom Chat Room
            
-            .grpDetails__materials 
-              h3.grpDetails__materials__heading.heading.heading--tertiary Study Materials 
+            .grpDetails__materials.scrollbarCustom
+              h3.grpDetails__materials__heading.heading.heading--tertiary Study Materials Shared By Members
               ul.grpDetails__materials__list
                 -let i = 1;
                 each el in group.studyMaterial
@@ -41,37 +41,39 @@ block content
                 button.grpDetails__footer__btn--upload.btn.btn--primary Upload
 
             .grpDetails__chatRoom.chatRoom
-              h3.heading.chatRoom__heading= `Welcome to ${group.name} ChatRoom. Maintain Dignity please!!!` 
-              .chatRoom__content 
-                .chatRoom__messages
-                  ul.chatRoom__messages__list
-                    each msg in messages
-                      -let pos = 'left';
-                      -msgDate = new Date(msg.sentOn);
-                      -let hours = msgDate.getHours();
-                      -let minutes = msgDate.getMinutes();
-                      -let period = 'AM';
-                      -if (hours > 12) {
-                        -hours = hours % 12;
-                        -period = 'PM';
-                      -}
-                      -if (hours < 10) hours = '0' + hours;
-                      -if (minutes < 10) minutes = '0' + minutes;
-                      
-                      -const time = `${hours}:${minutes} ${period}`;
+              .chatRoom__container.scrollbarCustom
+                h3.heading.chatRoom__heading= `Welcome to ${group.name} ChatRoom. Maintain Dignity please!!!` 
+                .chatRoom__content 
+                  .chatRoom__messages
+                    ul.chatRoom__messages__list
+                      each msg in messages
+                        -let pos = 'left';
+                        -msgDate = new Date(msg.sentOn);
+                        -let hours = msgDate.getHours();
+                        -let minutes = msgDate.getMinutes();
+                        -let period = 'AM';
+                        -if (hours > 12) {
+                          -hours = hours % 12;
+                          -period = 'PM';
+                        -}
+                        -if (hours < 10) hours = '0' + hours;
+                        -if (minutes < 10) minutes = '0' + minutes;
+                        
+                        -const time = `${hours}:${minutes} ${period}`;
 
-                      -if(msg.userName == 'You') 
-                        -pos = 'right';
+                        -if(msg.userName == 'You') 
+                          -pos = 'right';
 
-                      li.chatRoom__messages__list__item(class=`chatRoom__messages__list__item--${pos}`)
-                        .chatRoom__messages__list__item__info
-                          span.chatRoom__messages__list__item__info__user= `${msg.userName}`
-                          p.chatRoom__messages__list__item__info__msg= `${msg.content}`
-                          span.chatRoom__messages__list__item__info__time=`${time}`
+                        li.chatRoom__messages__list__item(class=`chatRoom__messages__list__item--${pos}`)
+                          .chatRoom__messages__list__item__info
+                            span.chatRoom__messages__list__item__info__user= `${msg.userName}`
+                            p.chatRoom__messages__list__item__info__msg= `${msg.content}`
+                            span.chatRoom__messages__list__item__info__time=`${time}`
 
-                form.chatRoom__form(data-username = `${user.name}`)
-                  input.chatRoom__form__input(type="text")
-                  button.btn.chatRoom__form__sendBtn Send 
+                  form.chatRoom__form(data-username = `${user.name}`)
+                    input.chatRoom__form__input(type="text")
+                    button.chatRoom__form__sendBtn
+                      ion-icon(name="send")
 
 
              
