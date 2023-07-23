@@ -69,6 +69,8 @@ block content
                             span.chatRoom__messages__list__item__info__user= `${msg.userName}`
                             p.chatRoom__messages__list__item__info__msg= `${msg.content}`
                             span.chatRoom__messages__list__item__info__time=`${time}`
+                    
+                    .chatRoom__messages__typingText 
 
                   form.chatRoom__form(data-username = `${user.name}`)
                     input.chatRoom__form__input(type="text")

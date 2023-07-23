@@ -29,6 +29,7 @@ export const DOMElements = {
   chatRoom: document.querySelector('.chatRoom'),
   chatRoomContainer: document.querySelector('.chatRoom__container'),
   chatRoomMsgsList: document.querySelector('.chatRoom__messages__list'),
+  chatRoomTyping: document.querySelector('.chatRoom__messages__typingText'),
   chatRoomForm: document.querySelector('.chatRoom__form'),
   chatRoomInput: document.querySelector('.chatRoom__form__input'),
   materialBtnTab: document.querySelector(

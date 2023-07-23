@@ -90,7 +90,12 @@ io.on('connection', (socket) => {
     // Creating room for this group id
     socket.join(data.groupId);
     // sockets.in(data.groupId).emit('user_joined', data.user); //emits to all
-    socket.broadcast.to(data.groupId).emit('user_joined', data.user);
+    socket.broadcast.to(data.groupId).emit('user_joined', data);
+  });
+
+  socket.on('is-typing', (data) => {
+    socket.join(data.groupId);
+    socket.broadcast.to(data.groupId).emit('is-typing', data);
   });
 
   socket.on('msg-send', (data) => {

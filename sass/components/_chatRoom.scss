@@ -21,8 +21,13 @@
     padding: 3rem;
     padding-top: 5rem;
     padding-bottom: 10rem;
+    &__typingText {
+      color: $color-default;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
     &__list {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       &__item {
         list-style: none;
         font-size: 1.4rem;
@@ -101,7 +106,7 @@
       //   transition: all 0.1s ease-out;
 
       & > ion-icon {
-        color: #333;
+        color: $color-default;
         width: 2.5rem;
         height: 2.5rem;
       }
