@@ -1,12 +1,14 @@
 // THIS FILE WILL CONTAIN CONFIGURATION WHICH IS RELATED TO EXPRESS
 const path = require('path');
 const express = require('express');
-const pug = require('pug');
+// const pug = require('pug');
 const bodyParser = require('body-parser');
-
+const http = require('http');
+const socketIO = require('socket.io');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+
 const userRouter = require('./routes/userRoutes');
 const groupRouter = require('./routes/groupRoutes');
 const viewRouter = require('./routes/viewRoutes');
@@ -50,6 +52,8 @@ app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
+  console.log(err);
+
   // WHEN DATA IS REQUESTED THROUGH API
   if (req.originalUrl.startsWith('/api')) {
     res.status(err.statusCode).json({
@@ -75,5 +79,36 @@ app.use((err, req, res, next) => {
 });
 
 // END OF ERROR HANDLER FUNC
+
+// Adding Socket IO for chatRoom thing
+
+const server = http.createServer(app);
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  socket.on('new_user_joined', (data) => {
+    // Creating room for this group id
+    socket.join(data.groupId);
+    // sockets.in(data.groupId).emit('user_joined', data.user); //emits to all
+    socket.broadcast.to(data.groupId).emit('user_joined', data);
+  });
+
+  socket.on('is-typing', (data) => {
+    socket.join(data.groupId);
+    socket.broadcast.to(data.groupId).emit('is-typing', data);
+  });
+
+  socket.on('msg-send', (data) => {
+    socket.join(data.groupId);
+
+    // sockets.in(data.groupId).emit('msg-receive', data);
+    socket.broadcast.to(data.groupId).emit('msg-receive', data);
+  });
+});
+const port = process.env.PORT || 4000;
+server.listen(port, (req, res) => {
+  console.log(`Running Server on port ${port}`);
+});
+// end of chatroom
 
 module.exports = app;

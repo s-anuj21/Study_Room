@@ -5,6 +5,7 @@
 import * as baseView from './view/baseView.js';
 import * as authenticate from './controller/authenticate.js';
 import * as grpController from './controller/grpController.js';
+import * as chatView from './view/chatView.js';
 
 // ## When Login Form is submitted
 if (baseView.DOMElements.formLogin) {
@@ -106,6 +107,7 @@ if (baseView.DOMElements.modalOkBtn) {
   });
 }
 
+
 // HANDLING CLICK ON MEMBER BUTTON
 if (baseView.DOMElements.memberBtnToggle) {
   baseView.DOMElements.memberBtnToggle.addEventListener('click', () => {
@@ -123,3 +125,49 @@ if (baseView.DOMElements.memberBtnToggle) {
 
 // Adding Join Input Code
 // /groups/${req.params.grpId}/joinGroup/${joinToken}
+
+// Handling chat input submission
+if (baseView.DOMElements.chatRoomForm) {
+  baseView.DOMElements.chatRoomForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (baseView.DOMElements.chatRoomInput.value) {
+      chatView.handleChatInput(baseView.DOMElements.chatRoomInput.value);
+    }
+  });
+}
+
+// end
+
+// Making tabs work
+const handleTabSwich = (btn, el, otherBtn, otherEl) => {
+  el.style.display = 'block';
+  btn.style.backgroundColor = '#e67e22';
+  otherEl.style.display = 'none';
+  otherBtn.style.backgroundColor = '#fff';
+};
+
+if (baseView.DOMElements.grpDetails) {
+  baseView.DOMElements.chatRoomBtnTab.addEventListener('click', () => {
+    handleTabSwich(
+      baseView.DOMElements.chatRoomBtnTab,
+      baseView.DOMElements.chatRoom,
+      baseView.DOMElements.materialBtnTab,
+      baseView.DOMElements.grpMaterials
+    );
+
+    baseView.DOMElements.chatRoomContainer.scrollTop =
+      baseView.DOMElements.chatRoomContainer.scrollHeight;
+  });
+
+  baseView.DOMElements.materialBtnTab.addEventListener('click', () => {
+    handleTabSwich(
+      baseView.DOMElements.materialBtnTab,
+      baseView.DOMElements.grpMaterials,
+      baseView.DOMElements.chatRoomBtnTab,
+      baseView.DOMElements.chatRoom
+    );
+
+    baseView.DOMElements.grpMaterials.scrollTop =
+      baseView.DOMElements.grpMaterials.scrollHeight;
+  });
+}

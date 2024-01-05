@@ -1,5 +1,5 @@
 .section--grpDetails {
-  padding-top: 10rem;
+  padding-top: 6rem;
   &____wrapper__inner {
   }
 }
@@ -29,7 +29,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5rem;
-    padding: 5rem;
+    padding: 4rem 5rem;
     background-color: $color-white;
     // border: 2px solid $color-primary;
     @include respond(tab) {
@@ -88,6 +88,37 @@
     // border: 5px solid $color-primary;
     // padding: 5rem;
 
+    &--leftSide {
+      flex: 70% 1 1;
+    }
+
+    &__tabs {
+      // flex: 70% 1 1;
+
+      &__btns {
+        display: flex;
+        border: 1.5px solid $color-grey-2;
+        color: $color-black;
+        & button {
+          flex-basis: 50%;
+          padding: 2rem;
+          text-transform: uppercase;
+          font-weight: 600;
+          border: none;
+          cursor: pointer;
+        }
+        &--active {
+          background-color: $color-primary;
+        }
+        &--material {
+        }
+
+        &--chatRoom {
+          background-color: $color-white;
+        }
+      }
+    }
+
     @include respond(phone) {
       flex-direction: column;
     }
@@ -95,7 +126,12 @@
 
   &__materials {
     padding: 5rem;
-    flex: 70% 1 1;
+    overflow: auto;
+    // border: 2px solid $color-grey-2;
+    height: 60rem;
+    padding-top: 5rem;
+
+    // flex: 70% 1 1;
     @include respond(tab) {
       padding: 4rem;
     }
@@ -163,7 +199,8 @@
     padding: 5rem;
     background-color: $color-primary;
     color: $color-white;
-
+    background-color: #dfe4ea;
+    color: $color-black;
     @include respond(tab) {
       padding: 4rem;
     }

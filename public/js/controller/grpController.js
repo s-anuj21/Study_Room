@@ -15,7 +15,7 @@ export const createGroup = async (name, subject, endDate, st = '') => {
   try {
     const url = `/api/groups`;
 
-    baseView.DOMElements.btnSubmit.disabled = true;
+    // baseView.DOMElements.btnSubmit.disabled = true;
     let res = await fetch(url, {
       method: 'POST',
       // credentials: 'same-origin', // This is to send cookies
@@ -28,7 +28,7 @@ export const createGroup = async (name, subject, endDate, st = '') => {
 
     res = await res.json();
 
-    baseView.DOMElements.btnSubmit.disabled = false;
+    // baseView.DOMElements.btnSubmit.disabled = false;
 
     if (res.status == 'success') window.location.assign('/');
     else {
@@ -58,7 +58,7 @@ export const uploadFiles = async (data) => {
 
   const url = `/api/groups/${baseView.DOMElements.grpDetails.dataset.grpid}`;
 
-  baseView.DOMElements.btnSubmit.disabled = true;
+  // baseView.DOMElements.btnSubmit.disabled = true;
   try {
     let res = await fetch(url, {
       method: 'POST',
@@ -68,7 +68,7 @@ export const uploadFiles = async (data) => {
       // },
     });
 
-    baseView.DOMElements.btnSubmit.disabled = false;
+    // baseView.DOMElements.btnSubmit.disabled = false;
 
     if (res) location.reload();
     else {

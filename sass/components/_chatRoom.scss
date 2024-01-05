@@ -1,0 +1,115 @@
+.chatRoom {
+  display: none;
+  position: relative;
+
+  &__container {
+    overflow: auto;
+    // border: 2px solid $color-grey-2;
+    height: 60rem;
+    padding-top: 5rem;
+  }
+
+  &__heading {
+    padding: 0 4rem;
+    font-size: 1.6rem;
+  }
+  &__content {
+    //
+  }
+
+  &__messages {
+    padding: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+    &__typingText {
+      color: $color-default;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    &__list {
+      margin-bottom: 2rem;
+      &__item {
+        list-style: none;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        display: flex;
+        &__info {
+          display: flex;
+          flex-basis: fit-content;
+          flex-direction: column;
+          padding: 0.5rem 1rem;
+          border-radius: 0.4rem;
+          border: 1.5px solid $color-primary-light-2;
+          &__user {
+            color: $color-secondary;
+            font-weight: 700;
+            font-size: 1.2rem;
+          }
+
+          &__msg {
+          }
+
+          &__time {
+            font-size: 1rem;
+            letter-spacing: 0;
+            text-align: right;
+            font-weight: 500;
+            margin-left: 1rem;
+          }
+        }
+
+        &--left {
+          & > div {
+            background-color: $color-white;
+          }
+        }
+
+        &--right {
+          justify-content: right;
+          & > div {
+            background-color: $color-primary-light-1;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    padding: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-right: 0;
+    background-color: #f5f6f6;
+    &__input {
+      flex: 90% 1 1;
+      padding: 0.5rem 1rem;
+      background-color: $color-white;
+      border-radius: 1rem;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    &__sendBtn {
+      padding: 1rem 2.5rem;
+      border-radius: 0.4rem;
+      display: inline-block;
+      width: fit-content;
+      border: none;
+      color: #333;
+      background-color: transparent;
+      //   box-shadow: 0 0.2rem 0.3rem #bdc3c7;
+      //   transition: all 0.1s ease-out;
+
+      & > ion-icon {
+        color: $color-default;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}

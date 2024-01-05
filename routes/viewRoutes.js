@@ -4,6 +4,7 @@ const router = express.Router();
 
 const viewController = require('../controllers/viewController');
 const authController = require('../controllers/authController');
+const messageController = require('../controllers/messageController');
 
 router.use(authController.isloggedIn);
 
@@ -15,5 +16,4 @@ router.get('/', viewController.getDashboard);
 router.get('/group/:grpId', viewController.getGroupDetails);
 router.get('/createGroup', viewController.getGrpCreationForm);
 router.get('/groups/:grpId/joinGroup/:joinToken', viewController.joinGroup);
-
 module.exports = router;

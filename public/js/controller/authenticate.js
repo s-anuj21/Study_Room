@@ -26,8 +26,11 @@ export const login = async (email, password, st = '') => {
     res = await res.json();
     baseView.DOMElements.btnSubmit.disabled = false;
 
-    if (res.status == 'success' && prevUrl.pathname != '/login')
+    if (res.status == 'success' && prevUrl.pathname != '/login') {
       window.location.assign(prevUrl);
+
+
+    }
     else if (res.status != 'success') {
       // Alert Failed
       let msg = res.message;

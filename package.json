@@ -24,6 +24,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
     "pug": "^3.0.2"
+    "socket.io": "^4.7.1"
   },
   "devDependencies": {
     "eslint": "^8.33.0",
@@ -35,6 +36,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "nodemon": "^2.0.20",
+    "open": "^8.4.2",
     "parcel": "^2.8.3",
     "prettier": "^2.8.4",
     "sass": "^1.58.0"

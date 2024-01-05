@@ -272,6 +272,17 @@ a {
 
 .show {
   display: block !important;
+
+.scrollbarCustom::-webkit-scrollbar {
+  width: 0.8rem;
+}
+.scrollbarCustom::-webkit-scrollbar-track {
+  background-color: #eee;
+  border-radius: 10rem;
+}
+.scrollbarCustom::-webkit-scrollbar-thumb {
+  background-color: #ced6e0;
+  border-radius: 10rem;
 }
 
 .header .nav {
@@ -334,6 +345,103 @@ a {
 
 .main {
   box-shadow: 0 0.5rem 1rem #bdc3c7;
+}
+
+.chatRoom {
+  display: none;
+  position: relative;
+}
+.chatRoom__container {
+  overflow: auto;
+  height: 60rem;
+  padding-top: 5rem;
+}
+.chatRoom__heading {
+  padding: 0 4rem;
+  font-size: 1.6rem;
+}
+.chatRoom__messages {
+  padding: 3rem;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+}
+.chatRoom__messages__typingText {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.chatRoom__messages__list {
+  margin-bottom: 2rem;
+}
+.chatRoom__messages__list__item {
+  list-style: none;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+.chatRoom__messages__list__item__info {
+  display: flex;
+  flex-basis: fit-content;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: 1.5px solid #f5b043;
+}
+.chatRoom__messages__list__item__info__user {
+  color: #e67e22;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.chatRoom__messages__list__item__info__time {
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-align: right;
+  font-weight: 500;
+  margin-left: 1rem;
+}
+.chatRoom__messages__list__item--left > div {
+  background-color: #fff;
+}
+.chatRoom__messages__list__item--right {
+  justify-content: right;
+}
+.chatRoom__messages__list__item--right > div {
+  background-color: #fdedd4;
+  border: none;
+}
+.chatRoom__form {
+  display: flex;
+  padding: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-right: 0;
+  background-color: #f5f6f6;
+}
+.chatRoom__form__input {
+  flex: 90% 1 1;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  border: none;
+}
+.chatRoom__form__input:focus {
+  outline: none;
+}
+.chatRoom__form__sendBtn {
+  padding: 1rem 2.5rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+  width: fit-content;
+  border: none;
+  color: #333;
+  background-color: transparent;
+}
+.chatRoom__form__sendBtn > ion-icon {
+  color: #333;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .footer {
@@ -448,7 +556,7 @@ a {
 }
 
 .section--grpDetails {
-  padding-top: 10rem;
+  padding-top: 6rem;
 }
 .grpDetails__wrapper {
   width: 100%;
@@ -476,7 +584,7 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5rem;
-  padding: 5rem;
+  padding: 4rem 5rem;
   background-color: #fff;
 }
 @media (max-width: 1000px) {
@@ -531,6 +639,28 @@ a {
   justify-content: space-between;
   background-color: #fff;
 }
+.grpDetails__contents--leftSide {
+  flex: 70% 1 1;
+}
+.grpDetails__contents__tabs__btns {
+  display: flex;
+  border: 1.5px solid #ddd;
+  color: #000;
+}
+.grpDetails__contents__tabs__btns button {
+  flex-basis: 50%;
+  padding: 2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.grpDetails__contents__tabs__btns--active {
+  background-color: #f39c12;
+}
+.grpDetails__contents__tabs__btns--chatRoom {
+  background-color: #fff;
+}
 @media (max-width: 600px) {
   .grpDetails__contents {
     flex-direction: column;
@@ -538,7 +668,9 @@ a {
 }
 .grpDetails__materials {
   padding: 5rem;
-  flex: 70% 1 1;
+  overflow: auto;
+  height: 60rem;
+  padding-top: 5rem;
 }
 @media (max-width: 1000px) {
   .grpDetails__materials {
@@ -601,8 +733,8 @@ a {
 }
 .grpDetails__members {
   padding: 5rem;
-  background-color: #f39c12;
-  color: #fff;
+  background-color: #dfe4ea;
+  color: #000;
 }
 @media (max-width: 1000px) {
   .grpDetails__members {

@@ -2,9 +2,9 @@ extends base
 
 block content 
   main.main 
-    section.section.section--grpDetails.grpDetails(data-grpid=`${group._id}`)
+    section.section.section--grpDetails.grpDetails(data-grpid=`${group._id}` data-userid  = `${user._id}`)
       .grpDetails__wrapper
-        .grpDetails__header
+        header.grpDetails__header
           .grpDetails__header__left
             h2.grpDetails__header__heading.heading.heading--primary= group.name
             p.grpDetails__header__subject= group.subject
@@ -19,34 +19,79 @@ block content
             //- span Members
 
         .grpDetails__contents
-          .grpDetails__materials 
-            h3.grpDetails__materials__heading.heading.heading--tertiary Study Materials 
-            ul.grpDetails__materials__list
-              -let i = 1;
-              each el in group.studyMaterial
-                li.grpDetails__materials__list__item 
-                  span= `${i}. ${el}`
-                  a.grpDetails__materials__list__item__btnDownload(href=`/api/groups/download/${el}` data-item=`${el}`)
-                    ion-icon(name="download")
-                -i++;
+          .grpDetails__contents--leftSide
+            .grpDetails__contents__tabs
+              .grpDetails__contents__tabs__btns 
+                button.grpDetails__contents__tabs__btns--material.grpDetails__contents__tabs__btns--active Study Material 
+                button.grpDetails__contents__tabs__btns--chatRoom Chat Room
+           
+            .grpDetails__materials.scrollbarCustom
+              h3.grpDetails__materials__heading.heading.heading--tertiary Study Materials Shared By Members
+              ul.grpDetails__materials__list
+                -let i = 1;
+                each el in group.studyMaterial
+                  li.grpDetails__materials__list__item 
+                    span= `${i}. ${el}`
+                    a.grpDetails__materials__list__item__btnDownload(href=`/api/groups/download/${el}` data-item=`${el}`)
+                      ion-icon(name="download")
+                  -i++;
 
-            .grpDetails__materials__upload
-              input.grpDetails__materials__upload__input.input--file(type = "file" name = "inputFile" id = "inputFile" multiple hidden)
-              .inputFile--Custom
-                label.inputFile--Custom__btn.btn(for = "inputFile") Choose File
-                span.inputFile__text No file Chosen 
-                // id, file-chosen is used by defualt input btn, to display files chosen
-              button.grpDetails__footer__btn--upload.btn.btn--primary Upload
+              .grpDetails__materials__upload
+                input.grpDetails__materials__upload__input.input--file(type = "file" name = "inputFile" id = "inputFile" multiple hidden)
+                .inputFile--Custom
+                  label.inputFile--Custom__btn.btn(for = "inputFile") Choose File
+                  span.inputFile__text No file Chosen 
+                  // id, file-chosen is used by defualt input btn, to display files chosen
+                button.grpDetails__footer__btn--upload.btn.btn--primary Upload
+
+            .grpDetails__chatRoom.chatRoom
+              .chatRoom__container.scrollbarCustom
+                h3.heading.chatRoom__heading= `Welcome to ${group.name} ChatRoom. Maintain Dignity please!!!` 
+                .chatRoom__content 
+                  .chatRoom__messages
+                    ul.chatRoom__messages__list
+                      each msg in messages
+                        -let pos = 'left';
+                        -msgDate = new Date(msg.sentOn);
+                        -let hours = msgDate.getHours();
+                        -let minutes = msgDate.getMinutes();
+                        -let period = 'AM';
+                        -if (hours > 12) {
+                          -hours = hours % 12;
+                          -period = 'PM';
+                        -}
+                        -if (hours < 10) hours = '0' + hours;
+                        -if (minutes < 10) minutes = '0' + minutes;
+                        
+                        -const time = `${hours}:${minutes} ${period}`;
+
+                        -if(msg.userName == 'You') 
+                          -pos = 'right';
+
+                        li.chatRoom__messages__list__item(class=`chatRoom__messages__list__item--${pos}`)
+                          .chatRoom__messages__list__item__info
+                            span.chatRoom__messages__list__item__info__user= `${msg.userName}`
+                            p.chatRoom__messages__list__item__info__msg= `${msg.content}`
+                            span.chatRoom__messages__list__item__info__time=`${time}`
+                    
+                    .chatRoom__messages__typingText 
+
+                  form.chatRoom__form(data-username = `${user.name}`)
+                    input.chatRoom__form__input(type="text")
+                    button.chatRoom__form__sendBtn
+                      ion-icon(name="send")
+
+
              
           .grpDetails__members 
             h3.grpDetails__members__heading.heading.heading--tertiary Group Members
             .grpDetails__members__close
               //- ion-icon(name="close")
             ul.grpDetails__members__list
-              each user in members
+              each userEl in members
                 li.grpDetails__members__list__item
                   ion-icon(name="person-circle")
-                  span= user.name
+                  span= userEl.name
         
         
         // Custom Alert
