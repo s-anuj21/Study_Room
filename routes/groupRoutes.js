@@ -17,10 +17,8 @@ router
 router
   .route('/:grpId')
   .get(groupController.getGroup)
-  .post(groupController.uploadMaterial, groupController.updateGroup)
   .delete(groupController.deleteGroup);
 
-router.get('/download/:itemName', groupController.downloadItem);
 router.get('/:grpId/joinToken', groupController.getJoinLink);
 router.post('/:grpId/chatRoom/:userId', messageController.sendMessage);
 

@@ -13,6 +13,7 @@ const { connectDB } = require('./config/db');
 
 const userRouter = require('./routes/userRoutes');
 const groupRouter = require('./routes/groupRoutes');
+const studyItemsRouter = require('./routes/studyItemRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const AppError = require('./utils/appError');
 
@@ -46,6 +47,7 @@ app.use(cookieParser());
 // MOUNTING ROUTERS
 app.use('/api/users', userRouter);
 app.use('/api/groups', groupRouter);
+app.use('/api/studyItems', studyItemsRouter);
 app.use('/', viewRouter);
 
 // A MIDDLEWARE WHICH RUNS A UNIDENFIED ROUTE IS CALLED

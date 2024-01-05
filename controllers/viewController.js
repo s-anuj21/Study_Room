@@ -16,7 +16,7 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
 
   grps = await Promise.all(
     grps.map(async (el) => {
-      const currUser = await User.findById(el.leader);
+      const currUser = await User.findById(el.admin);
       el.leaderName = currUser.name;
       return el;
     })

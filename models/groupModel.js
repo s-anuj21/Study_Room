@@ -12,10 +12,10 @@ const groupSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A Group must have a subject.'],
   },
-  leader: {
+  admin: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    required: [true, 'A group must have a leader.'],
+    required: [true, 'A group must have a admin.'],
   },
   members: [
     {
@@ -23,9 +23,10 @@ const groupSchema = new mongoose.Schema({
       ref: 'User',
     },
   ],
-  studyMaterial: [
+  studyItems: [
     {
-      type: String,
+      type: mongoose.Schema.ObjectId,
+      ref: 'StudyItem',
     },
   ],
   image: String,
