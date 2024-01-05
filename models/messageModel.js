@@ -25,7 +25,6 @@ const messageSchema = new mongoose.Schema({
 const Message = mongoose.model('Message', messageSchema);
 
 module.exports = Message;
-
 /*
 // DESIGNING USER SCHEMA
 const userSchema = new mongoose.Schema({

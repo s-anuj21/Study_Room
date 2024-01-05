@@ -195,6 +195,13 @@ a {
 .btn--primary:hover {
   background-color: #e67e22;
 }
+.btn--default {
+  background-color: #333;
+  color: #fff;
+}
+.btn--default:hover {
+  background-color: #222;
+}
 .btn--linkCopy {
   width: 20rem;
   text-align: center;
@@ -262,6 +269,9 @@ a {
   margin-top: 1rem;
   font-size: 1.4rem;
 }
+
+.show {
+  display: block !important;
 
 .scrollbarCustom::-webkit-scrollbar {
   width: 0.8rem;
@@ -565,6 +575,7 @@ a {
 @media (max-width: 600px) {
   .grpDetails__wrapper {
     padding: 0 2rem;
+    position: relative;
   }
 }
 .grpDetails__header {
@@ -604,6 +615,22 @@ a {
 @media (max-width: 600px) {
   .grpDetails__header__right {
     margin-top: 4rem;
+  }
+}
+.grpDetails__header__btnMembers {
+  position: absolute;
+  top: 1.5rem;
+  right: 3.5rem;
+  z-index: 34;
+}
+.grpDetails__header__btnMembers > ion-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #f39c12;
+}
+@media (max-width: 600px) {
+  .grpDetails__header__btnMembers {
+    display: block;
   }
 }
 .grpDetails__contents {
@@ -714,8 +741,49 @@ a {
     padding: 4rem;
   }
 }
+@media (max-width: 600px) {
+  .grpDetails__members {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem #bdc3c7;
+    transition: all 0.3s;
+  }
+}
+.grpDetails__members--show {
+  width: 25rem;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  padding-right: 6rem;
+  height: 25rem;
+  overflow: scroll;
+}
 .grpDetails__members__heading {
   margin-bottom: 5rem;
+}
+@media (max-width: 600px) {
+  .grpDetails__members__heading {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+}
+.grpDetails__members__close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #fff;
+  padding: 1.7rem;
+  border-radius: 10rem;
+}
+@media (max-width: 600px) {
+  .grpDetails__members__close {
+    display: block;
+  }
 }
 .grpDetails__members__list__item {
   margin-bottom: 2rem;
@@ -727,6 +795,17 @@ a {
   width: 2.5rem;
   height: 2.5rem;
   margin-right: 0.5rem;
+}
+@media (max-width: 600px) {
+  .grpDetails__members__list__item ion-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .grpDetails__members__list__item {
+    margin-bottom: 1rem;
+  }
 }
 @media (max-width: 600px) {
   .grpDetails__footer__btn--upload {
@@ -743,18 +822,61 @@ a {
 }
 .dashboard__header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
 }
 @media (max-width: 600px) {
   .dashboard__header {
     text-align: center;
-    flex-direction: column;
   }
+}
+.dashboard__header__btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 @media (max-width: 600px) {
   .dashboard__header__btns {
     margin-top: 3rem;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard__header__btns__createRoom {
+    margin: auto;
+  }
+}
+.dashboard__heading {
+  margin-bottom: 3rem;
+}
+@media (max-width: 600px) {
+  .dashboard__heading {
+    margin-bottom: 0;
+  }
+}
+
+.joinGrp__form__input {
+  padding: 1rem 2rem;
+  border: 1px solid #ddd;
+  margin-right: 1rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+  outline: none;
+}
+@media (max-width: 1000px) {
+  .joinGrp__form__input {
+    width: 30rem;
+  }
+}
+@media (max-width: 600px) {
+  .joinGrp__form__input {
+    margin-right: 0.5rem;
+    width: max-content;
+  }
+}
+@media (max-width: 600px) {
+  .joinGrp__form {
+    margin-bottom: 2rem;
   }
 }
 

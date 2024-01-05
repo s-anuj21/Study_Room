@@ -31,6 +31,14 @@
     }
   }
 
+  &--default {
+    background-color: $color-default;
+    color: $color-white;
+    &:hover {
+      background-color: #222;
+    }
+  }
+
   &--linkCopy {
     width: 20rem;
     text-align: center;
@@ -114,6 +122,8 @@
   font-size: 1.4rem;
 }
 
+.show {
+  display: block !important;
 .scrollbarCustom {
   // Customizing Scrollbar
   &::-webkit-scrollbar {

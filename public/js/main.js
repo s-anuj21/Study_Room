@@ -107,6 +107,25 @@ if (baseView.DOMElements.modalOkBtn) {
   });
 }
 
+
+// HANDLING CLICK ON MEMBER BUTTON
+if (baseView.DOMElements.memberBtnToggle) {
+  baseView.DOMElements.memberBtnToggle.addEventListener('click', () => {
+    console.log('..');
+    baseView.DOMElements.membersSection.classList.toggle(
+      'grpDetails__members--show'
+    );
+    if (baseView.DOMElements.memberBtnToggle.name == 'close') {
+      baseView.DOMElements.memberBtnToggle.name = 'people';
+    } else {
+      baseView.DOMElements.memberBtnToggle.name = 'close';
+    }
+  });
+}
+
+// Adding Join Input Code
+// /groups/${req.params.grpId}/joinGroup/${joinToken}
+
 // Handling chat input submission
 if (baseView.DOMElements.chatRoomForm) {
   baseView.DOMElements.chatRoomForm.addEventListener('submit', (e) => {

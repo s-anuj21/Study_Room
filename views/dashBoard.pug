@@ -5,10 +5,14 @@ block content
     section.section.section--myRooms
       .section--myRooms__wrapper__inner.dashboard
         .section__header.dashboard__header
-          .heading.heading--primary My Rooms
+          h2.heading.heading--primary.dashboard__heading My Rooms
           .dashboard__header__btns 
+            form.joinGrp__form(data-username = `${user.name}`)
+              input.joinGrp__form__input(type="text" placeholder="Enter Room Code to join!")
+              button.btn.btn--default Join
+
             a(href = "/createGroup").dashboard__header__btns__createRoom.btn Create New Room
-          //- button.btn--grpJoin Join Group
+
         .myRooms__list
           each el in grps
             //- li.myRooms__list__item

@@ -13,6 +13,10 @@ block content
             p.grpDetails__header__validity= `Valid Till ${day} ${monthText[month-1]} ${year}`
           .grpDetails__header__right 
             a.btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
+          
+          .grpDetails__header__btnMembers 
+            ion-icon(name="people").memberBtn--toggle
+            //- span Members
 
         .grpDetails__contents
           .grpDetails__contents--leftSide
@@ -81,6 +85,8 @@ block content
              
           .grpDetails__members 
             h3.grpDetails__members__heading.heading.heading--tertiary Group Members
+            .grpDetails__members__close
+              //- ion-icon(name="close")
             ul.grpDetails__members__list
               each userEl in members
                 li.grpDetails__members__list__item

@@ -20,6 +20,8 @@ export const DOMElements = {
   filesDesc: document.querySelector('.inputFile__text'),
   logoutBtn: document.querySelector('.nav__list__item__logout'),
   uploadBtn: document.querySelector('.grpDetails__footer__btn--upload'),
+  memberBtnToggle: document.querySelector('.memberBtn--toggle'),
+  membersSection: document.querySelector('.grpDetails__members'),
   copyJoinLinkBtn: document.querySelector('.btn--linkCopy'),
   modalOkBtn: document.querySelector('.modalAlert__btn--ok'),
   passwordConfirm: document.querySelector('.password--confirm'),
@@ -126,7 +128,7 @@ if (DOMElements.dateToday) {
   DOMElements.dateEnd.setAttribute('min', today);
 }
 
-// Custom ALert
+// CUSTOM ALERT
 export const customAlert = (msg) => {
   document.querySelector('.modalAlert').classList.add('showAlert');
   document.querySelector('.modalAlert__para').textContent = msg;
