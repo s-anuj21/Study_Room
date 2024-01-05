@@ -132,7 +132,6 @@ export const handleChatInput = async (inputMsg) => {
     });
 
     res = await res.json();
-    console.log(res);
   } catch (err) {
     console.log(err);
   }
