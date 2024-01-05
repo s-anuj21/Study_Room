@@ -272,6 +272,7 @@ a {
 
 .show {
   display: block !important;
+}
 
 .scrollbarCustom::-webkit-scrollbar {
   width: 0.8rem;
@@ -621,6 +622,7 @@ a {
   position: absolute;
   top: 1.5rem;
   right: 3.5rem;
+  display: none;
   z-index: 34;
 }
 .grpDetails__header__btnMembers > ion-icon {
@@ -733,6 +735,8 @@ a {
 }
 .grpDetails__members {
   padding: 5rem;
+  background-color: #f39c12;
+  color: #fff;
   background-color: #dfe4ea;
   color: #000;
 }
