@@ -206,6 +206,11 @@ a {
   width: 20rem;
   text-align: center;
 }
+.btn--deleteGrp {
+  margin-top: 2.5rem;
+  background: #dc3545;
+  color: #fff;
+}
 
 .showAlert {
   display: block !important;
@@ -284,6 +289,93 @@ a {
 .scrollbarCustom::-webkit-scrollbar-thumb {
   background-color: #ced6e0;
   border-radius: 10rem;
+}
+
+.modal-confirmation {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-confirmation__content {
+  width: 30%;
+  margin-left: 35%;
+  position: absolute;
+  top: 30%;
+  background-color: #fff;
+  padding: 4rem 3rem;
+  text-align: center;
+  animation: scaleConfirmPopup 0.4s forwards;
+  transform: scale(0.6);
+}
+.modal-confirmation__btns {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.modal-confirmation__btns__btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.2rem 2rem;
+  border-radius: 4px;
+  color: #fff;
+  transition: 0.3s all;
+}
+.modal-confirmation__btns__btn--yes {
+  background-color: #28a745;
+}
+.modal-confirmation__btns__btn--no {
+  background-color: #dc3545;
+}
+.modal-confirmation__btns__btn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scaleConfirmPopup {
+  0% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+@media only screen and (min-width: 700px) {
+  .modal {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.modal--show {
+  display: block !important;
+  z-index: 5 !important;
+}
+.modal--showTop {
+  display: block !important;
+  z-index: 10 !important;
+}
+.modal__header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1.2px solid #ccc;
+  padding: 1rem 0;
+}
+.modal__header__backBtn {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: #333;
+}
+.modal--forLoader {
+  z-index: 2;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .header .nav {
@@ -611,7 +703,8 @@ a {
 .grpDetails__header__right {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 @media (max-width: 600px) {
   .grpDetails__header__right {

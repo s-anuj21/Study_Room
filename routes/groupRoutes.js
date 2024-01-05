@@ -17,7 +17,8 @@ router
 router
   .route('/:grpId')
   .get(groupController.getGroup)
-  .delete(groupController.deleteGroup);
+  .delete(groupController.deleteGroup)
+  .put(groupController.updateGroup);
 
 router.get('/:grpId/joinToken', groupController.getJoinLink);
 router.post('/:grpId/chatRoom/:userId', messageController.sendMessage);

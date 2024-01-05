@@ -23,9 +23,12 @@ export const DOMElements = {
   memberBtnToggle: document.querySelector('.memberBtn--toggle'),
   membersSection: document.querySelector('.grpDetails__members'),
   copyJoinLinkBtn: document.querySelector('.btn--linkCopy'),
+  joinLink: document.querySelector('.grpDetails__joinLink'),
+  grpDeleteBtn: document.querySelector('.btn--deleteGrp'),
   modalOkBtn: document.querySelector('.modalAlert__btn--ok'),
   passwordConfirm: document.querySelector('.password--confirm'),
   inputCommonArr: Array.from(document.querySelectorAll('.form__field__input')),
+  modalConfirmation: document.querySelector('.modal-confirmation'),
 
   // chatRoom
   chatRoom: document.querySelector('.chatRoom'),

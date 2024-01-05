@@ -1,6 +1,6 @@
 import * as baseView from '../view/baseView.js';
 
-/*------ WHEN SIGNUP ROUTE IS HITTED -----*/
+/*------ WHEN SIGNUP ROUTE IS HIT -----*/
 export const createGroup = async (name, subject, endDate, st = '') => {
   name = name.trim();
   subject = subject.trim();
@@ -45,7 +45,7 @@ export const createGroup = async (name, subject, endDate, st = '') => {
 
 // upload
 
-export const uploadFiles = async (data) => {
+export const uploadFiles = async (data, description) => {
   if (data.files.length < 1) {
     baseView.customAlert('Please select some files.');
     return;
@@ -56,13 +56,13 @@ export const uploadFiles = async (data) => {
     formData.append('files', data.files[i]);
   }
 
-  const url = `/api/groups/${baseView.DOMElements.grpDetails.dataset.grpid}`;
+  const url = `/api/studyItems/${baseView.DOMElements.grpDetails.dataset.grpid}`;
 
   // baseView.DOMElements.btnSubmit.disabled = true;
   try {
     let res = await fetch(url, {
       method: 'POST',
-      body: formData,
+      body: { formData, description },
       // headers: {
       //   'Content-Type': 'multipart/form-data',
       // },
@@ -117,7 +117,48 @@ export const getGroupJoinLink = async (groupId) => {
     console.log(err);
   }
 };
+// ###################
 
+// Stuff Related to Group Deletion
+
+// HANDLING CLICK ON CONFIRMATION MODAL
+export const handleClickConfirmationModal = async (e) => {
+  if (!e.target.matches('.modal-confirmation__btns__btn')) return;
+  // CLOSE THE MODAL
+  baseView.DOMElements.modalConfirmation.classList.remove('modal--showTop');
+
+  // IF CLICK ON YES, DELETE THE COMMENT
+  if (e.target.matches('.modal-confirmation__btns__btn--yes')) {
+    deleteGroup(baseView.DOMElements.grpDetails.dataset.grpid);
+  }
+};
+
+const deleteGroup = async (groupId) => {
+  try {
+    const url = `/api/groups/${groupId}`;
+
+    let res = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    res = await res.json();
+
+    if (res.status != 'success') {
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+      return;
+    }
+
+    window.location.assign('/');
+  } catch (err) {
+    console.log(err);
+  }
+};
+// End of Stuff Related to Group Deletion
 // ###################
 
 // Join Grp

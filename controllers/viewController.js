@@ -4,23 +4,19 @@ const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const { catchAsyncError } = require('../utils/util');
 
-// THIS IS FOR DASHBOARD PAGE, WHICH IS CALLED ON '/'
+/**
+ * @description: It renders the dashboard page
+ */
 exports.getDashboard = catchAsyncError(async (req, res, next) => {
   let grps = {};
 
   if (req.user) {
     grps = await Group.find({
       _id: { $in: req.user.groups },
-    });
+    }).populate('admin', '-password');
   }
 
-  grps = await Promise.all(
-    grps.map(async (el) => {
-      const currUser = await User.findById(el.admin);
-      el.leaderName = currUser.name;
-      return el;
-    })
-  );
+  // console.log(grps, req.user);
 
   res.status(200).render('dashBoard', {
     title: 'Study Room',
@@ -28,16 +24,18 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// THIS RENDERS THE GROUPS DETAILS AND MEMBER INFO
+/**
+ * @description: It renders the group details page
+ * @param {bool} newUser  If new user joined group though link or code
+ * @returns
+ */
 exports.getGroupDetails = async (req, res, next, newUser = false) => {
   try {
-    const group = await Group.findById(req.params.grpId);
+    const group = await Group.findById(req.params.grpId)
+      .populate('members', '-password')
+      .populate('admin', '-password');
 
     if (!group) return next(new AppError('Invalid Group Id'));
-
-    const members = await User.find({
-      _id: { $in: group.members },
-    });
 
     let messages = await Message.find({
       _id: { $in: group.messages },
@@ -55,16 +53,17 @@ exports.getGroupDetails = async (req, res, next, newUser = false) => {
         return el;
       })
     );
+    // console.log(group);
+    // console.log(req.user._id);
 
     // CHECK IF USER IS NOT PRESENT IN MEMBERS, THAN DIVERT TO DASHBOARD
-    if (!group.members.includes(req.user._id)) {
-      return res.redirect('/');
-    }
+    // if (!group.members.includes(req.user._id)) {
+    //   return res.redirect('/');
+    // }
 
     res.status(200).render('grpDetail', {
       title: 'Study Room',
       group,
-      members,
       newUser,
       messages,
     });

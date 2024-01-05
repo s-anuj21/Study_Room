@@ -8,21 +8,25 @@ const groupSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A Group must have a name.'],
   },
+
   subject: {
     type: String,
     required: [true, 'A Group must have a subject.'],
   },
+
   admin: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: [true, 'A group must have a admin.'],
   },
+
   members: [
     {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
     },
   ],
+
   studyItems: [
     {
       type: mongoose.Schema.ObjectId,
@@ -34,13 +38,6 @@ const groupSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-
-  messages: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Message',
-    },
-  ],
 
   startDate: {
     type: Date,

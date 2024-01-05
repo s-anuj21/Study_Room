@@ -99,6 +99,21 @@ if (baseView.DOMElements.copyJoinLinkBtn) {
 }
 /* ###### */
 
+// Handling Click of Delete Group Button
+if (baseView.DOMElements.grpDeleteBtn) {
+  baseView.DOMElements.grpDeleteBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    baseView.DOMElements.modalConfirmation.classList.add('modal--showTop');
+  });
+}
+
+if (baseView.DOMElements.modalConfirmation) {
+  baseView.DOMElements.modalConfirmation.addEventListener('click', (e) => {
+    e.preventDefault();
+    grpController.handleClickConfirmationModal(e);
+  });
+}
+
 // Handling Click of Ok Button of alert Modal
 if (baseView.DOMElements.modalOkBtn) {
   baseView.DOMElements.modalOkBtn.addEventListener('click', (e) => {
@@ -106,7 +121,6 @@ if (baseView.DOMElements.modalOkBtn) {
     document.querySelector('.modalAlert').classList.remove('showAlert');
   });
 }
-
 
 // HANDLING CLICK ON MEMBER BUTTON
 if (baseView.DOMElements.memberBtnToggle) {

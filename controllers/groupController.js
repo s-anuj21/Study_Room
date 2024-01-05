@@ -43,20 +43,41 @@ exports.createGroup = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// exports.updateGroup = catchAsyncError(async (req, res, next) => {
-//   const grpId = req.params.grpId;
-//   const group = await Group.findById(grpId);
-//   if (!group) return next(new AppError(`Grp Doesn't exist`));
+exports.updateGroup = catchAsyncError(async (req, res, next) => {
+  const { grpId } = req.params;
+  const { name, subject, endDate } = req.body;
 
-//   req.files.forEach((el) => {
-//     group.studyMaterial.push(el.originalname);
-//   });
+  const group = await Group.findByIdAndUpdate(grpId, {
+    name,
+    subject,
+    endDate,
+  });
 
-//   await group.save();
-//   res.status(200).json({
-//     status: 'success',
-//   });
-// });
+  if (!group) return next(new AppError(`Grp Doesn't exist`));
+
+  res.status(200).json({
+    status: 'success',
+  });
+});
+
+exports.deleteGroup = catchAsyncError(async (req, res, next) => {
+  const { grpId } = req.params;
+  // Check if user is admin
+
+  const group = await Group.findById(grpId);
+
+  if (!group) return next(new AppError(`Group Doesn't exist`));
+
+  if (req.user._id.toString() !== group.admin.toString())
+    return next(new AppError(`You are not authorized to delete this group!!`));
+
+  await Group.findByIdAndDelete(grpId);
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Group Deleted!',
+  });
+});
 
 // CREATING TOKEN ,WHICH WILL BE USED WHILE JOINING GRP
 exports.getJoinLink = catchAsyncError(async (req, res) => {
@@ -81,10 +102,3 @@ exports.getJoinLink = catchAsyncError(async (req, res) => {
     joinLink: joinUrl,
   });
 });
-
-exports.deleteGroup = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route has been not implemented yet',
-  });
-};

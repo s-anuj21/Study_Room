@@ -15,7 +15,6 @@ block content
 
         .myRooms__list
           each el in grps
-            //- li.myRooms__list__item
             a.myRooms__list__item(href=`/group/${el._id}`)
               .myRooms__list__item__header
                 h4.myRooms__list__item__header__title= el.name
@@ -23,9 +22,10 @@ block content
 
               .myRooms__list__item__material
                 h5.myRooms__list__item__material__heading Recent Uploaded Material
-                .myRooms__list__item__material--recent= el.studyMaterial[0]
+                -if(el.studyItems.length > 0)
+                  .myRooms__list__item__material--recent= el.studyItems[0].fileName
 
-              .myRooms__list__item__leader= el.leaderName
+              .myRooms__list__item__leader= `Admin :- ${el.admin.name}`
             
           -if(!grps.length)
             .myRooms__empty Join a group to see here!! 

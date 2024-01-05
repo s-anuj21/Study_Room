@@ -46,9 +46,10 @@ exports.uploadItem = upload.array('files');
  */
 exports.createItem = catchAsyncError(async (req, res, next) => {
   const { grpId } = req.params;
+  const { description } = req.body;
   const newItem = await StudyItem.create({
     fileName: req.files[0].originalname,
-    description: req.body.description,
+    description,
     group: grpId,
     user: req.user._id,
   });
