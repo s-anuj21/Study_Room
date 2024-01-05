@@ -34,7 +34,6 @@ const addMessage = (msg, user, pos) => {
         </li>
     `;
 
-  console.log('aar');
   baseView.DOMElements.chatRoomMsgsList.insertAdjacentHTML(
     'beforeend',
     itemMarkup
@@ -45,26 +44,45 @@ const addMessage = (msg, user, pos) => {
 };
 // end of addmessage function
 
+// Emiting typing
+if (baseView.DOMElements.chatRoom) {
+  baseView.DOMElements.chatRoomInput.addEventListener('keyup', (e) => {
+    const data = {
+      user: baseView.DOMElements.chatRoomForm.dataset.username,
+      groupId: baseView.DOMElements.grpDetails.dataset.grpid,
+      userId: baseView.DOMElements.grpDetails.dataset.userid,
+    };
+
+    if (e.keyCode != 13) {
+      socket.emit('is-typing', data);
+    }
+  });
+}
+
+//end
+
 // Emiting if a user joined the chat
 if (baseView.DOMElements.chatRoomForm) {
   const data = {
     user: baseView.DOMElements.chatRoomForm.dataset.username,
     groupId: baseView.DOMElements.grpDetails.dataset.grpid,
+    userId: baseView.DOMElements.grpDetails.dataset.userid,
   };
   socket.emit('new_user_joined', data);
 }
 
 // Listening for a message receive and will add the msg to UI
 socket.on('msg-receive', (data) => {
+  baseView.DOMElements.chatRoomTyping.textContent = '';
   addMessage(data.msg, data.user, 'left');
   // window.scrollTo(0, document.body.scrollHeight);
 });
 
-socket.on('user-joined', (name) => {
+socket.on('user-joined', (data) => {
   // Don't do anything for now
   /*
   const itemMarkup = `
-      <li class = "chatRoom__messages__list__iitem">
+      <li class = "chatRoom__messages__d">
         <p>${name}<span> joined the chat.</span></p>
       </li>
     `;
@@ -73,6 +91,20 @@ socket.on('user-joined', (name) => {
     itemMarkup
   );
   */
+});
+
+// Listening for typing event
+let intervalIdTyping;
+socket.on('is-typing', (data) => {
+  baseView.DOMElements.chatRoomTyping.textContent = `${
+    data.user.split(' ')[0]
+  } is typing...`;
+
+  clearInterval(intervalIdTyping);
+
+  intervalIdTyping = setInterval(() => {
+    baseView.DOMElements.chatRoomTyping.textContent = '';
+  }, 1500);
 });
 
 // Handling the Send Message of User

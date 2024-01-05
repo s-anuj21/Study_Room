@@ -355,8 +355,13 @@ a {
   padding-top: 5rem;
   padding-bottom: 10rem;
 }
+.chatRoom__messages__typingText {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
 .chatRoom__messages__list {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .chatRoom__messages__list__item {
   list-style: none;
