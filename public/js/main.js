@@ -120,3 +120,6 @@ if (baseView.DOMElements.memberBtnToggle) {
     }
   });
 }
+
+// Adding Join Input Code
+// /groups/${req.params.grpId}/joinGroup/${joinToken}
