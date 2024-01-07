@@ -952,6 +952,9 @@ a {
   }
 }
 
+.joinGrp__form {
+  visibility: hidden;
+}
 .joinGrp__form__input {
   padding: 1rem 2rem;
   border: 1px solid #ddd;
