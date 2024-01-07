@@ -3,6 +3,7 @@ const multer = require('multer');
 const { catchAsyncError } = require('../utils/util');
 const AppError = require('../utils/appError');
 const StudyItem = require('../models/studyItemModel');
+const Group = require('../models/groupModel');
 
 /**
  * @description: It downloads a study item file
@@ -23,7 +24,7 @@ exports.downloadItem = catchAsyncError(async (req, res, next) => {
 //1) req.body and req.file is set by multer
 const multerStorage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, 'public/res/studyMaterials');
+    callBack(null, 'public/res/studyItems');
   },
   filename: (req, file, callBack) => {
     callBack(null, file.originalname);
@@ -55,6 +56,10 @@ exports.createItem = catchAsyncError(async (req, res, next) => {
   });
 
   if (!newItem) return next(new AppError('Item Creation Failed!!!', 500));
+
+  await Group.findByIdAndUpdate(grpId, {
+    $addToSet: { studyItems: newItem._id },
+  });
 
   res.status(201).json({
     status: 'success',

@@ -13,7 +13,9 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
   if (req.user) {
     grps = await Group.find({
       _id: { $in: req.user.groups },
-    }).populate('admin', '-password');
+    })
+      .populate('admin', '-password')
+      .populate('studyItems');
   }
 
   // console.log(grps, req.user);
@@ -32,8 +34,8 @@ exports.getDashboard = catchAsyncError(async (req, res, next) => {
 exports.getGroupDetails = async (req, res, next, newUser = false) => {
   try {
     const group = await Group.findById(req.params.grpId)
-      .populate('members', '-password')
-      .populate('admin', '-password');
+      .populate('admin', '-password')
+      .populate('studyItems');
 
     if (!group) return next(new AppError('Invalid Group Id'));
 
@@ -53,13 +55,13 @@ exports.getGroupDetails = async (req, res, next, newUser = false) => {
         return el;
       })
     );
-    // console.log(group);
-    // console.log(req.user._id);
 
     // CHECK IF USER IS NOT PRESENT IN MEMBERS, THAN DIVERT TO DASHBOARD
-    // if (!group.members.includes(req.user._id)) {
-    //   return res.redirect('/');
-    // }
+    if (!group.members.includes(req.user._id)) {
+      return res.redirect('/');
+    }
+
+    await group.populate('members', '-password');
 
     res.status(200).render('grpDetail', {
       title: 'Study Room',

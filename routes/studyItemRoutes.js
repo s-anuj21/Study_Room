@@ -8,12 +8,11 @@ const authController = require('../controllers/authController');
 // Restrticting
 router.use(authController.protect);
 
-router.get('/:grpId', studyItemController.getAllItems);
-router.post(
-  '/',
-  studyItemController.uploadItem,
-  studyItemController.createItem
-);
+router
+  .route('/:grpId')
+  .get(studyItemController.getAllItems)
+  .post(studyItemController.uploadItem, studyItemController.createItem);
+
 router
   .route('/:itemId')
   .get(studyItemController.getItem)

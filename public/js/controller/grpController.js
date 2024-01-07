@@ -56,13 +56,16 @@ export const uploadFiles = async (data, description) => {
     formData.append('files', data.files[i]);
   }
 
+  const filesDescription = '';
+  formData.append('description', filesDescription);
+
   const url = `/api/studyItems/${baseView.DOMElements.grpDetails.dataset.grpid}`;
 
   // baseView.DOMElements.btnSubmit.disabled = true;
   try {
     let res = await fetch(url, {
       method: 'POST',
-      body: { formData, description },
+      body: formData,
       // headers: {
       //   'Content-Type': 'multipart/form-data',
       // },
