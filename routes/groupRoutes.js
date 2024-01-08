@@ -20,7 +20,8 @@ router
   .delete(groupController.deleteGroup)
   .put(groupController.updateGroup);
 
-router.get('/:grpId/joinToken', groupController.getJoinLink);
+router.get('/:grpId/sendInvite', groupController.sendJoinLink);
+router.get('/:grpId/generateJoinCode', groupController.generateJoinCode);
 router.post('/:grpId/chatRoom/:userId', messageController.sendMessage);
 
 module.exports = router;

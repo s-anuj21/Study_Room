@@ -208,8 +208,10 @@ a {
 }
 .btn--deleteGrp {
   margin-top: 2.5rem;
-  background: #dc3545;
-  color: #fff;
+  color: #dc3545;
+}
+.btn--joinCodeGenerate {
+  margin-top: 3rem;
 }
 
 .showAlert {
@@ -434,6 +436,35 @@ a {
 }
 .header .nav__list__item:not(.header .nav__list__item--user):hover::after {
   width: 100%;
+}
+.header__form__input {
+  padding: 1rem 2rem;
+  border: 1px solid #ddd;
+  margin-right: 1rem;
+  width: 35rem;
+  border-radius: 0.5rem;
+  outline: none;
+}
+@media (max-width: 1000px) {
+  .header__form__input {
+    width: 30rem;
+  }
+}
+@media (max-width: 600px) {
+  .header__form__input {
+    margin-right: 0.5rem;
+    width: max-content;
+  }
+}
+@media (max-width: 600px) {
+  .header__form button {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .header__form {
+    margin-bottom: 2rem;
+  }
 }
 
 .main {
@@ -682,11 +713,6 @@ a {
 }
 @media (max-width: 1000px) {
   .grpDetails__header {
-    padding: 4rem;
-  }
-}
-@media (max-width: 600px) {
-  .grpDetails__header {
     flex-direction: column;
     padding: 3rem;
     text-align: center;
@@ -704,11 +730,12 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
 }
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .grpDetails__header__right {
     margin-top: 4rem;
+    align-items: center;
   }
 }
 .grpDetails__header__btnMembers {
@@ -723,10 +750,15 @@ a {
   height: 2.5rem;
   color: #f39c12;
 }
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .grpDetails__header__btnMembers {
     display: block;
   }
+}
+.grpDetails__header .grpDetails__header__joinCode {
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  color: #777;
 }
 .grpDetails__contents {
   display: flex;
@@ -949,34 +981,6 @@ a {
 @media (max-width: 600px) {
   .dashboard__heading {
     margin-bottom: 0;
-  }
-}
-
-.joinGrp__form {
-  visibility: hidden;
-}
-.joinGrp__form__input {
-  padding: 1rem 2rem;
-  border: 1px solid #ddd;
-  margin-right: 1rem;
-  width: 50rem;
-  border-radius: 0.5rem;
-  outline: none;
-}
-@media (max-width: 1000px) {
-  .joinGrp__form__input {
-    width: 30rem;
-  }
-}
-@media (max-width: 600px) {
-  .joinGrp__form__input {
-    margin-right: 0.5rem;
-    width: max-content;
-  }
-}
-@media (max-width: 600px) {
-  .joinGrp__form {
-    margin-bottom: 2rem;
   }
 }
 

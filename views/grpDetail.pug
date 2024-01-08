@@ -11,8 +11,14 @@ block content
             -let [year, month, day] = group.endDate.split('-');
             -let monthText = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
             p.grpDetails__header__validity= `Valid Till ${day} ${monthText[month-1]} ${year}`
+            a.btn.grpDetails__header__btn--link.btn--joinCodeGenerate Click to Generate Room Join Code
+            p.grpDetails__header__joinCode
+            
           .grpDetails__header__right 
-            a.btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
+            //- a.btn.grpDetails__header__btn--link.btn--linkCopy Copy Join Link
+            form.header__form.header__form--invite(data-username = `${user.name}`)
+              input.header__form__input.email(type="email" placeholder="Enter Email to Send Invite!")
+              button.btn.btn--default.btn Invite to Join Room
             a.btn.grpDetails__header__btn--link.btn--deleteGrp Delete Room
           
           .grpDetails__header__btnMembers 

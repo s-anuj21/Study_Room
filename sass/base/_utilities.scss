@@ -45,8 +45,11 @@
   }
   &--deleteGrp {
     margin-top: 2.5rem;
-    background: $color-error;
-    color: $color-white;
+    color: $color-error;
+    // color: $color-white;
+  }
+  &--joinCodeGenerate {
+    margin-top: 3rem;
   }
 }
 

@@ -88,6 +88,8 @@ exports.joinGroup = catchAsyncError(async (req, res, next) => {
   }
 
   // CHECK TOKEN, IF NOT VALID, REJECT USER
+  console.log(req.params);
+
   if (
     !(await group.correctJoinToken(req.params.joinToken, group.groupJoinToken))
   ) {

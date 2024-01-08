@@ -49,23 +49,39 @@ const groupSchema = new mongoose.Schema({
   },
 
   // THIS IS JUST FOR SHORT TERM PURPOSES, FOR JOINING GROUPS
-  groupJoinToken: String,
-  groupJoinTokenExpires: Date,
+  groupJoinToken: [{ type: String }],
+  groupJoinTokenExpires: [{ type: Date }],
 });
 
 groupSchema.methods.createJoinToken = async function () {
   // GENERATING 16 CHARACTER STRING
   const token = crypto.randomBytes(8).toString('hex');
-  this.groupJoinToken = await bcrypt.hash(token, 8);
 
-  this.groupJoinTokenExpires = Date.now() + 6 * 60 * 60 * 1000;
+  if (this.groupJoinToken.length > 10) {
+    this.groupJoinToken.shift();
+    this.groupJoinTokenExpires.shift();
+  }
+  this.groupJoinToken.push(await bcrypt.hash(token, 8));
+
+  this.groupJoinTokenExpires.push(Date.now() + 6 * 60 * 60 * 1000);
   await this.save();
   return token;
 };
 
+const compareJoinToken = async (enteredToken, dbTokens) => {
+  let flag = false;
+  for (i = 0; i < dbTokens.length; i++)
+    flag = flag || (await bcrypt.compare(enteredToken, dbTokens[i]));
+
+  return flag;
+};
+
 // CREATING A INSTANCE METHOD ON GROUP SCHEMA TO VALIDATE TOKEN
-groupSchema.methods.correctJoinToken = async (enteredToken, dbToken) =>
-  await bcrypt.compare(enteredToken, dbToken);
+groupSchema.methods.correctJoinToken = async (enteredToken, dbTokens) => {
+  let flag = await compareJoinToken(enteredToken, dbTokens);
+
+  return flag;
+};
 
 const Group = mongoose.model('Group', groupSchema);
 

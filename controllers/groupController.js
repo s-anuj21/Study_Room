@@ -80,25 +80,35 @@ exports.deleteGroup = catchAsyncError(async (req, res, next) => {
 });
 
 // CREATING TOKEN ,WHICH WILL BE USED WHILE JOINING GRP
-exports.getJoinLink = catchAsyncError(async (req, res) => {
+exports.sendJoinLink = catchAsyncError(async (req, res) => {
   const group = await Group.findById(req.params.grpId);
   const joinToken = await group.createJoinToken();
 
   let joinUrl = '';
-  if (process.env.NODE_ENV == 'development')
+  if (process.env.NODE_ENV === 'development')
     joinUrl = `${req.protocol}://${req.hostname}:${process.env.PORT}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
   else
     joinUrl = `${req.protocol}://${req.hostname}/groups/${req.params.grpId}/joinGroup/${joinToken}`;
 
-  // await new Email(
-  //   req.user,
-  //   joinUrl,
-  //   'anuj992393@gmail.com',
-  //   group.name
-  // ).sendJoinLink();
+  const { emailId } = req.body;
+  await new Email(req.user, joinUrl, emailId, group.name).sendJoinLink();
 
   await res.status(200).json({
     status: 'success',
+    message: 'Join Link Sent!',
     joinLink: joinUrl,
+  });
+});
+
+exports.generateJoinCode = catchAsyncError(async (req, res, next) => {
+  const group = await Group.findById(req.params.grpId);
+  const joinToken = await group.createJoinToken();
+  console.log(joinToken);
+
+  const joinTokenWithGrp = `${req.params.grpId}=${joinToken}`;
+
+  res.status(200).json({
+    status: 'success',
+    joinTokenWithGrp,
   });
 });

@@ -60,15 +60,6 @@ if (baseView.DOMElements.filesToUpload) {
   });
 }
 
-// ## Handling Click of Join Button
-if (baseView.DOMElements.btnGrpJoin) {
-  baseView.DOMElements.btnGrpJoin.addEventListener('click', (e) => {
-    e.preventDefault();
-    grpController.joinGroup();
-  });
-}
-/* ###### */
-
 // Handling the Change file click
 if (baseView.DOMElements.filesToUpload) {
   baseView.DOMElements.filesToUpload.addEventListener('change', function (e) {
@@ -88,11 +79,32 @@ if (baseView.DOMElements.logoutBtn) {
 }
 /* ###### */
 
-// Handling Click of Copy join Link Button
-if (baseView.DOMElements.copyJoinLinkBtn) {
-  baseView.DOMElements.copyJoinLinkBtn.addEventListener('click', (e) => {
+// Handling Submit of Invite Form
+if (baseView.DOMElements.formInvite) {
+  baseView.DOMElements.formInvite.addEventListener('submit', (e) => {
     e.preventDefault();
-    grpController.getGroupJoinLink(
+    grpController.sendGroupJoinLink(
+      baseView.DOMElements.grpDetails.dataset.grpid,
+      baseView.DOMElements.email.value
+    );
+  });
+}
+/* ###### */
+
+// Handling Submit of Join Group Form
+if (baseView.DOMElements.formJoinGrp) {
+  baseView.DOMElements.formJoinGrp.addEventListener('submit', (e) => {
+    e.preventDefault();
+    grpController.joinGroup(baseView.DOMElements.grpJoinCodeInput.value);
+  });
+}
+/* ###### */
+
+// Handling Click of Generate Code Button
+if (baseView.DOMElements.btnGenerateCode) {
+  baseView.DOMElements.btnGenerateCode.addEventListener('click', (e) => {
+    e.preventDefault();
+    grpController.generateJoinCode(
       baseView.DOMElements.grpDetails.dataset.grpid
     );
   });

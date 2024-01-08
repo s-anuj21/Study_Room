@@ -84,10 +84,39 @@ export const uploadFiles = async (data, description) => {
   }
 };
 
-// getGroupJoinLink
-export const getGroupJoinLink = async (groupId) => {
+// sendGroupJoinLink
+export const sendGroupJoinLink = async (groupId, emailId) => {
   try {
-    const url = `/api/groups/${groupId}/joinToken`;
+    const url = `/api/groups/${groupId}/sendInvite`;
+
+    let res = await fetch(url, {
+      method: 'GET',
+      // credentials: 'same-origin', // This is to send cookies
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: {
+        emailId,
+      },
+    });
+
+    res = await res.json();
+
+    if (res.status != 'success') {
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+// ###################
+
+export const generateJoinCode = async (grpId) => {
+  try {
+    const url = `/api/groups/${grpId}/generateJoinCode`;
 
     let res = await fetch(url, {
       method: 'GET',
@@ -105,22 +134,40 @@ export const getGroupJoinLink = async (groupId) => {
       baseView.customAlert(msg);
       return;
     }
-    // Writing Link on Clipboard
-    navigator.clipboard.writeText(res.joinLink);
-    const copyLinkText = baseView.DOMElements.copyJoinLinkBtn.textContent;
-    baseView.DOMElements.copyJoinLinkBtn.classList.add('grey-text');
-    baseView.DOMElements.copyJoinLinkBtn.textContent = 'Link Copied!';
-
-    // Ressetting text after copying
-    setTimeout(() => {
-      baseView.DOMElements.copyJoinLinkBtn.textContent = copyLinkText;
-      baseView.DOMElements.copyJoinLinkBtn.classList.remove('grey-text');
-    }, 1000);
+    baseView.DOMElements.joinCodeContent.innerHTML = res.joinTokenWithGrp;
   } catch (err) {
     console.log(err);
   }
 };
-// ###################
+
+export const joinGroup = async (joinTokenWithGrp) => {
+  try {
+    const [grpId, joinToken] = joinTokenWithGrp.trim().split('=');
+
+    console.log(grpId, joinToken);
+
+    const url = `/groups/${grpId}/joinGroup/${joinToken}`;
+    let res = await fetch(url, {
+      method: 'GET',
+      // credentials: 'same-origin', // This is to send cookies
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    res = await res.json();
+
+    if (res.status != 'success') {
+      let msg = res.message;
+      if (!msg) msg = 'Something went wrong!!';
+      baseView.customAlert(msg);
+    }
+
+    window.location.assign(`/groups/${grpId}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // Stuff Related to Group Deletion
 
@@ -155,41 +202,9 @@ const deleteGroup = async (groupId) => {
       baseView.customAlert(msg);
       return;
     }
-
-    window.location.assign('/');
   } catch (err) {
     console.log(err);
   }
 };
 // End of Stuff Related to Group Deletion
 // ###################
-
-// Join Grp
-// export const joinGroup = async () => {
-//   try {
-//     const data = {
-//       groupId: `63ea8732d47ee6bf3a6eae2a`,
-//     };
-//     const url = `/api/users/updateMe/`;
-
-//     let res = await fetch(url, {
-//       method: 'PATCH',
-//       // credentials: 'same-origin', // This is to send cookies
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-
-//       body: JSON.stringify(data),
-//     });
-
-//     res = await res.json();
-
-//     if (res.status != 'success') {
-//       let msg = res.message;
-//       if (!msg) msg = 'Something went wrong!!';
-//       baseView.customAlert(msg);
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

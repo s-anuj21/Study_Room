@@ -48,6 +48,6 @@ module.exports = class Email {
   }
 
   async sendJoinLink() {
-    await this.send('joinTemp', 'Group Join Invitation');
+    await this.send('joinTemp', 'Room Join Invitation!!');
   }
 };
