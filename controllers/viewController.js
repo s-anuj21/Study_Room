@@ -88,7 +88,6 @@ exports.joinGroup = catchAsyncError(async (req, res, next) => {
   }
 
   // CHECK TOKEN, IF NOT VALID, REJECT USER
-  console.log(req.params);
 
   if (
     !(await group.correctJoinToken(req.params.joinToken, group.groupJoinToken))
@@ -111,6 +110,14 @@ exports.joinGroup = catchAsyncError(async (req, res, next) => {
     { $addToSet: { members: user._id } }
   );
 
+  if (req.joinByCode == true) {
+    return res.status(200).json({
+      status: 'success',
+      message: 'Joined successfully',
+    });
+  }
+
+  // If user is joining through link, then redirect to group details page
   this.getGroupDetails(req, res, next, true);
 });
 

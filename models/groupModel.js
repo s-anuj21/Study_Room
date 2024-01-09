@@ -70,7 +70,7 @@ groupSchema.methods.createJoinToken = async function () {
 
 const compareJoinToken = async (enteredToken, dbTokens) => {
   let flag = false;
-  for (i = 0; i < dbTokens.length; i++)
+  for (let i = 0; i < dbTokens.length; i++)
     flag = flag || (await bcrypt.compare(enteredToken, dbTokens[i]));
 
   return flag;
@@ -78,8 +78,7 @@ const compareJoinToken = async (enteredToken, dbTokens) => {
 
 // CREATING A INSTANCE METHOD ON GROUP SCHEMA TO VALIDATE TOKEN
 groupSchema.methods.correctJoinToken = async (enteredToken, dbTokens) => {
-  let flag = await compareJoinToken(enteredToken, dbTokens);
-
+  const flag = await compareJoinToken(enteredToken, dbTokens);
   return flag;
 };
 

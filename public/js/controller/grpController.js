@@ -90,14 +90,11 @@ export const sendGroupJoinLink = async (groupId, emailId) => {
     const url = `/api/groups/${groupId}/sendInvite`;
 
     let res = await fetch(url, {
-      method: 'GET',
-      // credentials: 'same-origin', // This is to send cookies
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      data: {
-        emailId,
-      },
+      body: JSON.stringify({ emailId }),
     });
 
     res = await res.json();
@@ -120,7 +117,6 @@ export const generateJoinCode = async (grpId) => {
 
     let res = await fetch(url, {
       method: 'GET',
-      // credentials: 'same-origin', // This is to send cookies
       headers: {
         'Content-Type': 'application/json',
       },
@@ -144,15 +140,13 @@ export const joinGroup = async (joinTokenWithGrp) => {
   try {
     const [grpId, joinToken] = joinTokenWithGrp.trim().split('=');
 
-    console.log(grpId, joinToken);
-
-    const url = `/groups/${grpId}/joinGroup/${joinToken}`;
+    const url = `/api/groups/joinByCode`;
     let res = await fetch(url, {
-      method: 'GET',
-      // credentials: 'same-origin', // This is to send cookies
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ grpId, joinToken }),
     });
 
     res = await res.json();
@@ -163,9 +157,9 @@ export const joinGroup = async (joinTokenWithGrp) => {
       baseView.customAlert(msg);
     }
 
-    window.location.assign(`/groups/${grpId}`);
+    window.location.assign(`/group/${grpId}`);
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 };
 
@@ -202,6 +196,8 @@ const deleteGroup = async (groupId) => {
       baseView.customAlert(msg);
       return;
     }
+
+    window.location.assign('/');
   } catch (err) {
     console.log(err);
   }

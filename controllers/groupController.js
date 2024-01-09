@@ -18,6 +18,10 @@ exports.getGroup = (req, res) => {
   });
 };
 
+/**
+ * @desc    Creating a new group
+ * @route   POST /api/groups
+ */
 exports.createGroup = catchAsyncError(async (req, res, next) => {
   const grp = await Group.create({
     name: req.body.name,
@@ -43,6 +47,10 @@ exports.createGroup = catchAsyncError(async (req, res, next) => {
   });
 });
 
+/**
+ * @desc    Updating a group
+ * @route   PUT /api/groups/:grpId
+ */
 exports.updateGroup = catchAsyncError(async (req, res, next) => {
   const { grpId } = req.params;
   const { name, subject, endDate } = req.body;
@@ -60,6 +68,10 @@ exports.updateGroup = catchAsyncError(async (req, res, next) => {
   });
 });
 
+/**
+ * @desc    Deleting a group
+ * @route   DELETE /api/groups/:grpId
+ */
 exports.deleteGroup = catchAsyncError(async (req, res, next) => {
   const { grpId } = req.params;
   // Check if user is admin
@@ -79,7 +91,10 @@ exports.deleteGroup = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// CREATING TOKEN ,WHICH WILL BE USED WHILE JOINING GRP
+/**
+ * @desc    Creating a join token, which will be used while joining grp via link
+ * @route   PUT /api/groups/:grpId/sendInvite
+ */
 exports.sendJoinLink = catchAsyncError(async (req, res) => {
   const group = await Group.findById(req.params.grpId);
   const joinToken = await group.createJoinToken();
@@ -100,6 +115,11 @@ exports.sendJoinLink = catchAsyncError(async (req, res) => {
   });
 });
 
+/**
+ * @desc    Creating a join token, which will be used while joining grp via code
+ * @route   GET /api/groups/:grpId/generateJoinCode
+ */
+
 exports.generateJoinCode = catchAsyncError(async (req, res, next) => {
   const group = await Group.findById(req.params.grpId);
   const joinToken = await group.createJoinToken();
@@ -111,4 +131,15 @@ exports.generateJoinCode = catchAsyncError(async (req, res, next) => {
     status: 'success',
     joinTokenWithGrp,
   });
+});
+
+/**
+ * @desc    Joining a group via token
+ * @route   PUT /api/groups/joinByToken
+ */
+exports.joinGroupByToken = catchAsyncError(async (req, res, next) => {
+  req.params.joinToken = req.body.joinToken;
+  req.params.grpId = req.body.grpId;
+  req.joinByCode = true;
+  next();
 });
