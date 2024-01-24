@@ -8,16 +8,20 @@ module.exports = class Email {
     this.firstName = user.name.split(' ')[0];
     this.grpName = grpName;
     this.url = url;
-    this.from = `Anuj Sharma <mailtoanuj21@gmail.com>`;
+    this.from = `Anuj Sharma <anuj21.dev@outlook.com>`;
   }
 
   newTransport() {
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
+      secureConnection: false,
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,
+      },
+      tls: {
+        ciphers: 'SSLv3',
       },
     });
   }

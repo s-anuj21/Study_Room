@@ -98,12 +98,20 @@ export const sendGroupJoinLink = async (groupId, emailId) => {
     });
 
     res = await res.json();
+    console.log(res);
 
     if (res.status != 'success') {
       let msg = res.message;
       if (!msg) msg = 'Something went wrong!!';
       baseView.customAlert(msg);
       return;
+    }
+
+    if (res.status == 'success') {
+      baseView.customAlert(
+        'Invite Sent!! Ask your friend to check their spam folder too.'
+      );
+      baseView.DOMElements.formInvite.reset();
     }
   } catch (err) {
     console.log(err);
