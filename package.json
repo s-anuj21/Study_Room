@@ -6,7 +6,7 @@
   "scripts": {
     "compileSass": "sass ./sass/main.scss ./public/css/style.css -w",
     "watchJs": "parcel watch ./public/js/main.js --dist-dir ./public/js",
-    "buildJs": "parcel build ./public/js/main.js --dist-dir ./public/js",
+    "buildJs": "npm install && parcel build ./public/js/main.js --dist-dir ./public/js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
